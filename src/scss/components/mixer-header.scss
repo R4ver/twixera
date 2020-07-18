@@ -1,0 +1,244 @@
+.eq-open-settings {
+    display: inline-block;
+    position: relative;
+    margin: auto 0;
+    margin-right: 8px;
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: bottom;
+    }
+
+    img, i {
+        vertical-align: middle;
+    }
+
+    &:hover {
+        background-color: rgba($white, .1);
+    }
+}
+
+b-desktop-header {
+    z-index: 100;
+    @include breakpoint(laptop) {
+        .logo {
+            margin: 0 0px 8px 27px !important;
+            text-align: center;
+        }
+
+        .logo .full {
+            display: none;
+        }
+
+        .logo .merge {
+            display: inline-block !important;
+            margin: 0 auto;
+        }
+    }
+
+    .me-dropdown {
+        display: none !important;
+    }
+}
+
+.me-pinned-search {
+    z-index: 500 !important;
+}
+
+[class^=nav_] {
+    a, .nav-link {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        padding: 0px 8px;
+        
+        color: rgba(255, 255, 255, 0.72);
+        font-family: "Segoe UI", sans-serif;
+        font-size: 16px;
+        line-height: 21px;
+        font-weight: 600;
+        letter-spacing: 0px;
+        
+        border-radius: 4px 4px 0 0;
+        border: 1px solid transparent;
+        background: transparent;      
+
+        &:hover {
+            color: $white;
+        }
+
+        &:focus, &:active {
+            outline: 0;
+            border: 0px solid transparent;
+        }
+        
+        .mixera-nav-active-underline {
+            display: none;
+            position: absolute;
+            left: 8px;
+            bottom: 0;
+            width: calc(100% - 16px);
+            height: 2px;
+            background: $mixer-brand;
+        }
+
+        &.active {
+            color: $white;
+        }
+
+        &.active .mixera-nav-active-underline {
+            display: block;
+        }
+    }
+
+    .nav-link.eq-nav-link.is-dropdown {
+        &:hover {
+            background-color: $mixer-primary-light;
+        }
+
+        &:hover>.eq-nav-link-dropdown {
+            display: flex;
+        }
+
+        .eq-nav-link-dropdown {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            position: absolute;
+            top: 100%;
+            left: -1px;
+            padding: 8px;
+
+            background-color: $mixer-primary-light;
+            border-radius: 0 4px 4px 4px;
+
+            a {
+                margin: 0;
+                width: 100%;
+                white-space: nowrap;
+                border-radius: 4px;
+
+                &:hover {
+                    background-color: rgba($white, .1);
+                }
+
+                &:hover [class^=overlay] {
+                    background: transparent;
+                }
+            }
+        }
+    }
+
+    [class^="moreSection_"] {
+        [class*="iconButton_"] {
+            position: relative;
+            top: 5px;
+        }
+
+        [class^="content_"] {
+            background: transparent;
+        }
+    }
+}
+
+.user-area {
+    .language-selector {
+        margin-right: 0px;
+
+        .language-button {
+            width: 32px;
+            height: 32px;
+            padding: 4px;
+
+            border-radius: 50%;
+
+            &:hover {
+                background-color: rgba($white, .1);
+            }
+
+            bui-icon {
+                color: $white;
+            }
+        }
+
+        span,
+        bui-icon[title="Click to Expand"] {
+            display: none;
+        }
+
+        bui-icon {
+            margin-left: 0 !important;
+
+            span::before {
+                position: relative;
+                top: 3px;
+            }
+        }
+
+        bui-icon span {
+            display: block;
+        }
+    }
+}
+
+[aria-label="Get embers"] {
+    position: relative;
+    
+    // Removed while the mixer dec-ember promo is going on
+    // overflow: hidden;
+
+    [class^=background_] {
+        background: transparent;
+    }
+
+    .mixera-ember-button-img {
+        margin-right: 4px;
+    }
+
+    [class^=embersButton_] {
+        margin-left: 0;
+        border: 0px;
+        border-radius: 50%;
+
+        &:hover {
+            background-color: rgba($white, .1);
+        }
+    }
+
+    [class^=embersLabel_] {
+        display: none;
+    }
+
+    [class^=embersIcon_] {
+        margin-right: 0;
+    }
+}
+
+b-notifications {
+
+    &.active {
+        background-color: #131C2C;
+        border-radius: 75px;
+    }
+
+    .dropdown.notifications {
+        border-radius: 10px;
+    }
+}
+
+.mixera-nav-sparks {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+
+    img {
+        margin: 0 4px;
+        width: 20px;
+    }
+}

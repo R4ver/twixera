@@ -1,0 +1,78 @@
+aside.chat {
+    transition: top .15s ease;
+}
+
+[class*=chatContainer] {
+    .mixera-progressbar {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+// Make the textarea wrapper the same height as the channel info bar 
+// cause my ocd is getting annoyed about them not fitting
+[class*=chatContainer] [class^=webComposerBlock] {
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    z-index: 10;
+}
+
+.mixera-emote-suggestions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 4px;
+    z-index: 2;
+
+    background-color: $td-primary;
+    box-shadow: inset 0 -3px 9px rgba(0, 0, 0, .24);
+    transition: bottom 200ms ease-in-out;
+
+    &.is-visible {
+        bottom: 60px;
+    }
+
+    .mixera-suggested-emotes {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .mixera-emote-suggestion-button {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        margin: 4px;
+        border-radius: 3px;
+
+        &:hover,
+        &.is-selected {
+            background-color: rgba($white, .1);
+        }
+
+        span {
+            font-family: $primary-family;
+        }
+
+        img {
+            margin-right: 4px;
+            max-width: 24px;
+        }
+    }
+
+    .mixera-tooltip {
+        margin: 0 auto;
+        margin-top: 8px;
+        margin-bottom: 4px;
+        color: rgba($white, .7);
+        font-size: 14px;
+        text-align: center;
+    }
+}

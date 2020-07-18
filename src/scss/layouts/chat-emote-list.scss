@@ -1,0 +1,206 @@
+[class*=chatContainer__] {
+    [class^=backdrop_] {
+
+        [class^=container__] {
+            visibility: hidden;
+            [class^=container__] {
+                visibility: hidden;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .mixera-emote-container {
+        visibility: visible;
+    }
+}
+
+.mixera-emote-container-backdrop.has-smaller-emote-menu {
+    top: auto;
+    bottom: 0;
+    height: 60%;
+}
+
+.mixera-emotelist-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+
+    .mixera-emote-list-tabs {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 60px;
+        background-color: $td-primary;
+        box-shadow: 0 -9px 16px rgba(0,0,0,.15);
+    }
+
+    .mixera-emote-search-wrapper {
+        display: block;
+        position: absolute;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 8px;
+        background-color: #1d1e27;
+        box-shadow: 0 9px 16px rgba(0, 0, 0, 0.15);
+
+        input {
+            margin-right: 45px;
+        }
+    }
+}
+
+.mixera-emotes {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% * 3);
+    height: calc(100% - 60px);
+    transition: all 200ms ease-out;
+    transform: translateZ(0);
+    background-color: $td-primary;
+
+    .mixera-mixer-default-emotes {
+        [class^=container__] {
+            visibility: visible;
+        }
+    }
+
+    .emote-button {
+        position: relative;
+        margin: 8px;
+        color: $white;
+
+        &.is-disabled {
+
+            img,
+            span {
+                cursor: help;
+                opacity: .4;
+            }
+
+            .eq-tooltip {
+                background-color: $danger;
+            }
+
+            .eq-tooltip::after {
+                border-top-color: $danger;
+            }
+        }
+
+        p {
+            color: $white;
+        }
+
+        span {
+            display: block;
+        }
+
+        img {
+            max-width: 28px;
+            max-height: 28px;
+        }
+    }
+
+    .mixera-emote-section {
+        padding: 16px;
+        width: 100%;
+        text-align: left;
+
+        &.eq-partner-emote-promo {
+            margin-bottom: 16px;
+            padding: 6px;
+
+            color: $yellow;
+
+            border: 1px solid rgba($yellow, .4);
+            border-radius: 5px;
+            box-shadow: 0 9px 16px rgba($black, .24);
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            button {
+                pointer-events: none;
+                opacity: 1;
+            }
+        }
+
+        &.eq-emote-favorites {
+            margin-bottom: 16px;
+
+            .eq-emote-favorite-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                min-height: 56px;
+            }
+        }
+
+        .title {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+    }
+
+    .mixera-emote-list {
+        flex-grow: 1;
+        display: flex;
+        position: relative;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        overflow-y: scroll;
+    }
+}
+
+.eq-favorite-title {
+    padding: 8px;
+    background-color: rgba($black, .3);
+}
+
+.eq-chat-emote-list-wrapper {
+    padding: 8px;
+
+    
+
+    &.eq-favorites-wrapper {
+        display: flex;
+        padding: 16px;
+        max-height: 150px;
+        overflow: auto;
+
+        background-color: rgba($black, .3);
+        border-top: 2px solid rgba($white, .3);
+    }
+}
+
+// Cleanup some mixer things
+[class*=chatContainer__] [class^=backdrop_] [class^=container_] h1 {
+    display: none;
+}
+
+// [class*=chatContainer__] [class^=backdrop_] [class^=container_] [class^=container__] {
+//     display: none;
+// }
+
+[class*=chatContainer__] [class^=backdrop_] [class^=close__] {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    padding-top: 3px;
+    width: auto;
+    z-index: 20;
+}

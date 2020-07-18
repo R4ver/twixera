@@ -1,0 +1,33 @@
+$bg-gradient-color1: #323440;
+$bg-gradient-color2: #23242D;
+$bg-gradient: linear-gradient(90deg, $bg-gradient-color1 0%, $bg-gradient-color2 100%);
+$bg-inactive-gradient: linear-gradient(90deg, rgba($bg-gradient-color1, .5) 0%, rgba($bg-gradient-color2, .5) 100%);
+
+.twixera-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px 16px;
+
+    color: $white;
+    font-family: $primary-family;
+
+    background-color: rgba(#{$primary-purple-rgb}, .8);
+    @include shadow(3);
+    border-radius: 20px;
+    
+    &.is-inactive {
+        background-color: rgba(#{$primary-purple-rgb}, .6);
+        box-shadow: 0 0 0;
+
+        .twixera-title, .twixera-subtitle {
+            opacity: .5;
+        }
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

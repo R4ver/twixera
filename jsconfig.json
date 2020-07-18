@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2018",
+        "baseUrl": ".",
+        "paths": {
+            "PackageConfig": ["./package.json"],
+            "Root": ["./src"],
+            "Core": ["./src/core"],
+            "Components": ["./src/components"],
+            "Modules": ["./src/modules"],
+            "Hooks": ["./src/hooks"]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "**/node_modules/*"
+    ]
+}

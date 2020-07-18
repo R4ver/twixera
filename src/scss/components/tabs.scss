@@ -1,0 +1,33 @@
+.mixera-tab-button-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    .mixera-active-tab-indicator {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: calc(100% / 3);
+        height: 4px;
+
+        background-color: $mixer-brand;
+        transform: translateX(0);
+        transition: transform 200ms ease-out;
+    }
+}
+
+.mixera-tab-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 16px 24px;
+
+    text-align: center;
+
+    img {
+        width: 24px;
+    }
+}

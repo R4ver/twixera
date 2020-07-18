@@ -1,0 +1,25 @@
+.mixera-input {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        text-transform: capitalize;
+    }
+
+    input {
+        padding: 8px 16px;
+
+        color: $white;
+        font-size: 16px;
+
+        background-color: $td-primary-light;
+        border: 0px;
+        border-radius: 75px;
+        outline: 0;
+
+        &.is-error, &.is-error:focus, &.is-error:active {
+            box-shadow: inset 0 0 0 2px $red;
+            transition: all .15s ease-in-out;
+        }
+    }
+}

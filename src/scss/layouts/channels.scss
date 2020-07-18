@@ -1,0 +1,149 @@
+b-channel-page-wrapper {
+    .stage.eq-channel-stage,
+    .stage:not(.aspect-16-9).eq-channel-stage,
+    .stage.aspect-16-9.eq-channel-stage {
+        height: calc(100vh - 120px);
+        max-height: calc(100vh - 120px);
+    }
+
+    // .stage.aspect-16-9.has-host-bar {
+    //     max-height: calc(100vh - 120px);
+    // }
+
+    .eq-hide-interactive-board {
+        display: none !important;
+    }
+
+    .eq-force-video-feed-bottom-0 {
+        bottom: 0 !important;
+    }
+
+    [aria-label="Toggle MixPlay Controls"] {
+        &:hover {
+            background-color: rgba($white, .1);
+        }
+
+        &:focus {
+            background-color: transparent;
+        }
+    }
+
+    // Theater Mode Button
+    .mixera-theater-span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+
+        &:hover .mixera-tooltip {
+            opacity: 1;
+            bottom: calc(100% + 5px);
+        }
+
+        .mixera-tooltip {
+            display: -webkit-box;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: auto;
+            left: 50%;
+            right: auto;
+            bottom: 100%;
+            padding: 0 10px;
+            min-height: 26px;
+            white-space: nowrap;
+            will-change: transform;
+            pointer-events: none;
+            opacity: 0;
+
+            font-size: 13px;
+
+            background-color: #2e354b;
+            border-radius: 4px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, .2);
+            transform: translate(-50%);
+            transition: all .15s cubic-bezier(.35, 0, .25, 1);
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+
+                border: 5px solid transparent;
+                border-top-color: #2e354b;
+            }
+        }
+    }
+    .mixera-theater-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 6px;
+        width: 36px;
+        height: 36px;
+
+        color: $white;
+
+        border-radius: 50%;
+        
+        &:hover {
+            background-color: rgba($white, .1);
+        }
+    }
+}
+
+body.mixera-theater-mode  {
+    b-nav-host, b-host-bar {
+        transition: all .15s cubic-bezier(.35, 0, .25, 1);
+    }
+
+    b-nav-host {
+        display: block;
+        position: absolute;
+        top: -60px;
+        left: 0;
+        width: 100%;
+    }
+
+    b-host-bar {
+        z-index: 2;
+
+        bui-card {
+            position: relative;
+        }
+    }
+
+    [class^=navContainer_] {
+        position: relative;
+    }
+
+    .content.theater-mode-page-content {
+        margin-top: 0px;
+    }
+    
+    aside.chat {
+        top: 0;
+    }
+
+    b-channel-page-wrapper {
+        .stage.eq-channel-stage,
+        .stage:not(.aspect-16-9).eq-channel-stage,
+        .stage.aspect-16-9.eq-channel-stage {
+            height: 100vh;
+            max-height: 100vh;
+        }
+    }
+
+    b-stage {
+        background-color: $black;
+    }
+
+    .channel-page {
+        height: 100vh;
+        max-height: 100vh;
+    }
+
+}

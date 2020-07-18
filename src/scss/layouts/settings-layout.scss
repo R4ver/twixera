@@ -1,0 +1,312 @@
+// Colors
+$top-bar-color1: #282939;
+$top-bar-color2: #0A0B0D;
+$top-bar-gradient: linear-gradient(90deg, $top-bar-color1 0%, $top-bar-color2 100%);
+$navigation-gradient: linear-gradient(0deg, $top-bar-color1 0%, $top-bar-color2 100%);
+
+$navigation-gradient: linear-gradient(180deg, $top-bar-color1 0%, $top-bar-color2 100%);
+$navigation-item-active: linear-gradient(90deg, rgba($white, .2) 0%, transparent 80%);
+
+$tab-header: $primary-highlight-gradient;
+$tab-border-radius: 40px 0 0 0;
+$tab-page-bg: #101017;
+
+$tooltip-gradient-color1: #323440;
+$tooltip-gradient-color2: #23242D;
+$tab-tooltip-bg: linear-gradient(90deg, $tooltip-gradient-color1 0%, $tooltip-gradient-color2 100%);
+
+$close-button-size: 42px;
+
+.twixera-settings-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 10rem;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    opacity: 0;
+    z-index: 9000;
+
+    background-color: rgba(5, 4, 7, 0.8);
+    backdrop-filter: blur(5px);
+    animation: FadeIn .25s ease-in-out forwards;
+}
+
+// Settings page content styling
+.twixera-settings {
+    font-family: $primary-family;
+
+    .title {
+        font-size: 30px;
+        border-bottom: 2px solid $primary;
+    }
+}
+
+.twixera-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    padding: 40px 0;
+    margin: 0 auto;
+    width: 70vw;
+    height: 100%;
+    max-width: 1224px;
+    z-index: 9999;
+
+    transform: translateX(-50%);
+
+    .twixera-settings-header {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        width: 100%;
+
+        .header-left, .header-right, .twixera-user, .twixera-settings-close {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .header-left {
+            padding: $twixera-spacing-small $twixera-spacing-medium;
+
+            background-color: rgba(#{$primary-purple-rgb}, .8);
+            border-radius: $twixera-border-radius-medium;
+        }
+
+        .twixera-user {
+            margin-right: $twixera-spacing-medium;
+            padding: $twixera-spacing-small $twixera-spacing-medium;
+            background-color: rgba(#{$primary-purple-rgb}, .8);
+            border-radius: $twixera-border-radius-medium;
+
+            span {
+                margin-right: $twixera-spacing-medium;
+                font-size: 16px;
+            }
+
+            .twixera-avatar-wrapper {
+                width: 50px;
+                height: 50%;
+                overflow: hidden;
+                border-radius: $twixera-border-radius-small;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .twixera-settings-close {
+            display: block;
+            margin-left: $twixera-spacing-medium;
+            height: 100%;
+            padding: $twixera-spacing-small calc(#{$twixera-spacing-small} + #{$twixera-spacing-medium});
+
+            color: $white;
+            font-size: 24px;
+            text-align: center;
+
+            background-color: rgba(#{$primary-purple-rgb}, .8);
+            border-radius: $twixera-border-radius-medium;
+            transition: background-color .15s ease-in-out;
+
+            &:hover {
+                background-color: rgba(#{$primary-purple-rgb}, 1);
+            }
+        }
+    }
+
+    .settings-nav {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        .twixera-logo-wrapper {
+            margin-right: 20px;
+            width: 40px;
+            height: 40px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .settings-nav-item {
+            font-size: 16px;
+        }
+
+        button.settings-nav-item {
+            margin: 0 10px;
+            padding: 5px 10px;
+
+            border-bottom: 2px solid transparent;
+
+            &.is-active {
+                border-bottom: 2px solid $primary
+            }
+        }
+    }
+
+    .twixera-settings-body {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .twixera-page {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        width: 100%;
+        
+        &.dashboard {
+            display: flex;
+            justify-content: space-between;
+            overflow-y: scroll;
+
+            padding: 40px;
+            width: 100%;
+
+            background-color: rgba(#{$primary-purple-rgb}, .8);
+            border-radius: $twixera-border-radius-medium;
+
+            .twixera-settings-section .title {
+                margin-bottom: $twixera-spacing-medium;
+            }
+
+            .section-news {
+                flex: 1;
+                margin-right: $twixera-spacing-medium;
+            }
+
+            .section-more {
+                display: flex;
+                flex-direction: column;
+                margin-left: $twixera-spacing-medium;
+                min-width: 360px;
+
+                .twixera-button {
+                    margin-top: $twixera-spacing-small;
+                }
+            }
+        }
+
+        &.settings {
+            justify-content: space-around;
+
+            .left-column, .right-column {
+                flex: 1;
+            }
+
+            .left-column {
+                margin-right: $twixera-spacing-small;
+            }
+
+            .right-column {
+                margin-left: $twixera-spacing-small;
+            }
+        }
+    }
+
+    .twixera-setting {
+        &.is-soon {
+            user-select: none;
+            pointer-events: none;
+            opacity: .5;
+        }
+        
+        .twixera-settings-multiple-choice {
+            display: flex;
+            position: relative;
+            padding-top: $spacing-medium;
+
+            button {
+                padding: $spacing-small 16px;
+                width: 100%;
+                font-weight: 400;
+                text-transform: capitalize;
+
+                color: rgba($white, .5);
+
+                background-color: rgba($td-primary-dark, .5);
+            }
+
+            button:hover {
+                color: $white;
+                background-color: rgba($td-primary-dark, .7);
+            }
+
+            button.is-active {
+                color: $white;
+                background: $primary;
+            }
+        }
+
+        button.is-soon {
+            user-select: none;
+            color: rgba($white, .5);
+
+            &:hover {
+                background-color: $td-primary-dark;
+            }
+
+            &:hover::after {
+                opacity: 1;
+            }
+
+            &::after {
+                content: "Soon™";
+                display: block;
+                position: absolute;
+                top: -100%;
+                left: 50%;
+                padding: 6px;
+                opacity: 0;
+
+                color: $white;
+
+                transform: translateX(-50%);
+                transition: all .15s ease;
+            }
+        }
+
+        header + .twixera-subtitle {
+            padding-bottom: 20px;
+        }
+
+        .twixera-title {
+            font-size: 20px;
+        }
+
+        .twixera-subtitle {
+            padding-top: $spacing-medium;
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+
+    .twixera-item-list {
+        width: 100%;
+    }
+}
+
+@keyframes FadeIn {
+    from {
+        opacity: 0;
+    }
+    
+    to {
+        opacity: 1;
+    }
+}

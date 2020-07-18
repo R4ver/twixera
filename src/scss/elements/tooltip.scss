@@ -1,0 +1,109 @@
+.eq-tooltip {
+    display: none;
+    position: absolute;
+    padding: 3px;
+    pointer-events: none;
+    user-select: none;
+    z-index: 2000;
+    
+    color: $white;
+    
+    background-color: $black;
+    border-radius: 3px;
+    
+    &.is-top {
+        top: 0;
+    }
+    
+    &.is-left {
+        left: 0;
+    }
+    
+    &.is-right {
+        right: 0;
+    }
+    
+    &.is-bottom {
+        bottom: 0;
+    }
+}
+
+.mixera-tooltip {
+    font-family: $primary-family;
+    font-weight: 400;
+
+    @each $name, $pair in $colors {
+        $color: nth($pair, 1);
+        $color-invert: nth($pair, 2);
+        $color-hover: nth($pair, 3);
+        $color-gradient: nth($pair, 4);
+        
+        &.is-#{$name} {
+            color: $color;
+            
+            &:hover {
+                color: $color-hover;
+            }
+        }
+        
+        &.has-#{$name}-background-color {
+            color: $color-invert;
+            background-color: $color;
+            
+            &:hover {
+                background-color: $color-hover;
+            }
+        }
+
+        &.has-#{$name}-gradient {
+            color: $color-invert;
+            background: $color-gradient;
+
+            &:hover {
+                filter: brightness(1.1)
+            }
+        }
+    }
+    
+    &.is-floating {
+        $arrow-size: 10px;
+        @include triangle($td-primary-dark, #{$arrow-size});
+        
+        position: absolute;
+        top: 0;
+        padding: 4px;
+        width: 115%;
+        z-index: 100;
+
+        box-shadow: 0 0 9px rgba($primary, .5);
+        border-radius: 5px;
+        
+        &.is-top {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, #{calc(-100% - #{$arrow-size})});
+        }
+        
+        &.is-left {
+            top: 50%;
+            left: 0;
+            transform: translate(#{calc(-100% + #{$arrow-size})}, -50%);
+        }
+        
+        &.is-right {
+            top: 50%;
+            right: 0;
+            transform: translate(#{calc(100% + #{$arrow-size})}, -50%);
+        }
+        
+        &.is-bottom {
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, #{calc(100% + #{$arrow-size})});
+        }
+    }
+    
+    &.is-small {
+        font-size: $size-6;
+    }
+}
