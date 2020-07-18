@@ -1,0 +1,55 @@
+.twixera-markdown-container {
+    padding: 0 24px;
+    font-size: $size-6;
+
+    p, span, b, i, strong, bold {
+        font-size: $size-6;
+        vertical-align: middle;
+    }
+
+    h3, h4, h5, h6 {
+        font-size: $size-6;
+        padding: 12px 0px;
+    }
+
+    h1:not(:first-child) {
+        margin-top: 24px;
+    }
+
+    h2 {
+        margin-top: $twixera-spacing-medium;
+        padding-bottom: $twixera-spacing-small;
+        font-size: $size-5;
+        border-bottom: 1px solid rgba($white, .5);
+    }
+
+    h1 {
+        font-size: $size-3;
+        margin-bottom: $twixera-spacing-small;
+    }
+
+    h3 {
+        margin-top: $twixera-spacing-small;
+        padding: 0;
+        padding-left: $twixera-spacing-small;
+        border-left: 2px solid $primary;
+    }
+
+    ul {
+        margin-left: 20px;
+        line-height: 40px;
+
+        li ul {
+            position: relative;
+            margin-left: 40px;
+            opacity: .6;
+            font-size: $size-6;
+
+            &::before {
+                content: "–";
+                position: absolute;
+                left: -20px;
+            }
+        }
+    }
+}

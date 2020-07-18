@@ -1,0 +1,46 @@
+$avatarSize: 24px;
+
+.chat-line__message {
+    .twixera-user-avatar-wrapper {
+        display: inline-block;
+        margin-right: 6px;
+        width: $avatarSize;
+        height: $avatarSize;
+        vertical-align: middle;
+        overflow: hidden;
+
+        // background-color: rgba($black, .2);
+        transform: scale(0);
+        transform-origin: center center;
+        // opacity: 0;
+
+        &.animate {
+            animation: loadImage .15s cubic-bezier(.63,.25,.18,1) forwards;
+        }
+
+        &.is-mod {
+            border-color: #0f0;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 50%;
+        }
+    }
+}
+
+@keyframes loadImage {
+    from {
+        transform: scale(0);
+        // opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        // opacity: 1;
+    }
+}

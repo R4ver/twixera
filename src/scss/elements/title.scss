@@ -1,0 +1,115 @@
+// Fix title to relate to Mixers changed font in 1.4.0
+.title {
+    font-family: $primary-family;
+}
+
+.eq-title {
+    display: block;
+    padding: 16px;
+    padding-bottom: 8px;
+    
+    &.has-underline {
+        border-bottom: 2px solid rgba(255, 255, 255, .2);
+    }
+}
+
+.eq-subtitle {
+    display: block;
+    padding: 16px;
+}
+
+.eq-title, .eq-subtitle {
+    // Sizes
+    @each $size in $sizes {
+        $i: index($sizes, $size);
+
+        &.is-#{$i} {
+            font-size: $size
+        }
+    }
+    
+    // Colors
+    @each $name, $pair in $colors {
+        $color: nth($pair, 1);
+        $color-invert: nth($pair, 2);
+        $color-hover: nth($pair, 3);
+
+        &.is-#{$name},
+        &.has-#{$name}-background-color {
+            color: $color-invert;
+            background-color: $color;
+
+            &:hover {
+                background-color: $color-hover;
+            }
+        }
+    }
+
+    &.no-vertical-padding {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    &.no-horizontal-padding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.twixera-title, .twixera-subtitle {
+    @extend .eq-title;
+    font-family: $primary-family;
+
+    &.is-section-title {
+        margin-top: 24px;
+        width: 100%;
+
+        &::after {
+            content: "";
+            display: block;
+            margin: 8px 0px;
+            width: 100%;
+            height: 4px;
+
+            background: $primary-gradient;
+            border-radius: 75px;
+        }
+    }
+}
+
+// Copy the header style of the sections from Mixer
+// Mixer: .delve-title
+.twixera-delve-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 8px;
+
+    &.has-hover {
+        cursor: pointer;
+    }
+
+    .twixera-delve-header-tip {
+        opacity: .5;
+
+        &::before {
+            content: "―";
+            margin: 0 16px;
+        }
+    }
+}
+
+.twixera-delve-header .title {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    color: $white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    opacity: 1;
+
+    .order-type {
+        display: block;
+        height: 24px;
+    }
+}

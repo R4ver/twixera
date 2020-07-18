@@ -1,0 +1,66 @@
+$bg-gradient-color1: #323440;
+$bg-gradient-color2: #23242D;
+$bg-gradient: linear-gradient(90deg, $bg-gradient-color1 0%, $bg-gradient-color2 100%);
+
+.mixera-item-list {
+    padding: $spacing-small;
+
+    background: $bg-gradient;
+    border-radius: 5px;
+    @include shadow(3);
+
+    .mixera-item-list-view {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        min-height: 40px;
+        padding: 8px;
+        padding-bottom: 0;
+
+        background-color: $td-primary-dark;
+        border-radius: 5px;
+    }
+
+    .mixera-list-item {
+        margin-bottom: 10px;
+        padding: 8px;
+
+        background-color: $td-primary-light;
+        border-radius: 5px;
+
+        &:not(:last-child) {
+            margin-right: $spacing-small;
+        }
+
+        span {
+            margin-right: 12px;
+        }
+    }
+
+    .mixera-item-list-input-area {
+        margin-top: $spacing-medium;
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .mixera-error-label {
+            color: $red;
+            font-size: 14px;
+        }
+
+        .mixera-input-area-items {
+            display: flex;
+            
+            .mixera-input {
+                flex-grow: 1;
+
+                input {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}

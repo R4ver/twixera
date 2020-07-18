@@ -1,0 +1,212 @@
+// EQ Variables
+
+// Default Colors
+$black: hsl(0, 0%, 4%);
+$black-bis: hsl(0, 0%, 7%);
+$black-ter: hsl(0, 0%, 14%);
+
+$grey-darker: hsl(0, 0%, 21%);
+$grey-dark: hsl(0, 0%, 29%);
+$grey: hsl(0, 0%, 48%);
+$grey-light: hsl(0, 0%, 71%);
+$grey-lighter: hsl(0, 0%, 86%);
+
+$white-ter: hsl(0, 0%, 96%);
+$white-bis: hsl(0, 0%, 98%);
+$white: hsl(0, 0%, 100%);
+
+$orange: hsl(33, 88%, 52%);
+$yellow: hsl(48, 100%, 67%);
+$green: hsl(141, 71%, 48%);
+$turquoise: hsl(171, 100%, 41%);
+$cyan: hsl(204, 86%, 53%);
+$blue: hsl(217, 71%, 53%);
+$purple: hsl(271, 100%, 71%);
+$red: hsl(360, 100%, 61%);
+$red-er: hsl(350, 83%, 48%);
+//----------------------------------------------------------------
+
+// Custom Colors
+$primary: #19C2F7;
+$primary-dark: #3538A7;
+$primary-gradient: linear-gradient(90deg, $primary 0%, $primary-dark 100%);
+
+$info: $cyan;
+$important: $orange;
+$success: $green;
+$warning: darken($yellow, 20%);
+$danger: $red;
+
+$light: $white-ter;
+$dark: $grey-darker;
+
+$primary-highlight-gradient-color1: #5155DE;
+$primary-highlight-gradient-color2: #BA86E8;
+$primary-highlight-gradient: linear-gradient(90deg, $primary-highlight-gradient-color1 0%, $primary-highlight-gradient-color2 100%);
+
+// Gradient Colors
+$info-gradient: linear-gradient(90deg, $info 0%, darken($info, 10%) 100%);
+$important-gradient: linear-gradient(90deg, $important 0%, darken($important, 10%) 100%);
+$success-gradient: linear-gradient(90deg, $success 0%, darken($success, 10%) 100%);
+$warning-gradient: linear-gradient(90deg, $warning 0%, darken($warning, 10%) 100%);
+$danger-gradient: linear-gradient(90deg, $danger 0%, darken($danger, 10%) 100%);
+$black-gradient: linear-gradient(90deg, $black 0%, darken($black, 10%) 100%);
+$white-gradient: linear-gradient(90deg, $white 0%, darken($white, 10%) 100%);
+
+// Mixer Colors
+$mixer-primary-light: lighten(#29374A, 5%);
+$mixer-primary: #29374A;
+$mixer-primary-darker: #212C3D;
+$mixer-dark: #131D2C;
+$mixer-brand: #00bcf2;
+$mixer-brand-dark: #0270d9;
+//----------------------------------------------------------------
+
+// Hover colors
+$light-amount: 8%;
+$primary-hover: lighten($primary, $light-amount);
+$info-hover: lighten($info, $light-amount);
+$important-hover: lighten($important, $light-amount);
+$danger-hover: lighten($danger, $light-amount);
+$success-hover: lighten($success, $light-amount);
+$warning-hover: lighten($warning, $light-amount);
+$black-hover: lighten($black, $light-amount);
+$white-hover: darken($white, $light-amount);
+//----------------------------------------------------------------
+
+// Inverted Colors
+$orange-invert: findColorInvert($orange);
+$yellow-invert: findColorInvert($yellow);
+$green-invert: findColorInvert($green);
+$turquoise-invert: findColorInvert($turquoise);
+$cyan-invert: findColorInvert($cyan);
+$blue-invert: findColorInvert($blue);
+$purple-invert: findColorInvert($purple);
+$red-invert: findColorInvert($red);
+
+$primary-invert: findColorInvert($primary);
+$info-invert: $cyan-invert;
+$important-invert: findColorInvert($important);
+$success-invert: $green-invert;
+$warning-invert: $yellow-invert;
+$danger-invert: $red-invert;
+$light-invert: $dark;
+$dark-invert: $light;
+
+// Inverted Mixer Colors
+$mixer-primary-light-invert: findColorInvert($mixer-primary-light);
+$mixer-primary-invert: findColorInvert($mixer-primary);
+$mixer-primary-darker-invert: findColorInvert($mixer-primary-darker);
+$mixer-dark-invert: findColorInvert($mixer-dark);
+$mixer-brand-invert: findColorInvert($mixer-brand);
+//----------------------------------------------------------------
+
+// Link colors
+$link: $primary;
+$link-invert: $primary-invert;
+$link-visited: $purple;
+
+$link-hover: $primary-hover;
+$link-hover-border: $grey-light;
+
+$link-focus: $grey-darker;
+$link-focus-border: $blue;
+
+$link-active: $grey-darker;
+$link-active-border: $grey-dark;
+//----------------------------------------------------------------
+
+// Fonts
+$ff-open-sans: "Open Sans", sans-serif;
+$ff-lato: "Lato", sans-serif;
+$primary-family: $ff-open-sans;
+//----------------------------------------------------------------
+
+// Custom font-sizes
+$size-1: 40px;
+$size-2: 30px;
+$size-3: 24px;
+$size-4: 20;
+$size-5: 18px;
+$size-6: 16px;
+$size-7: 14px;
+//----------------------------------------------------------------
+
+// Margins and Paddings
+$spacing-small: 10px;
+$spacing-medium: 20px;
+$spacing-large: 40px;
+
+$sizes: $size-1, $size-2, $size-3, $size-4, $size-5, $size-6, $size-7;
+
+$button-sizes: (
+    "small": 8px 16px,
+    "medium": 12px 24px,
+    "large": 16px 32px
+);
+
+// Highlight chat message colors
+$highlightBG: rgba(161, 195, 255, 0.3);
+$highlightNameBG: #242439;
+
+$colors: (
+    "primary": ($primary, $primary-invert, $primary-hover, $primary-gradient),
+    "info": ($info, $info-invert, $info-hover, $info-gradient),
+    "important": ($important, $important-invert, $important-hover, $important-gradient),
+    "success": ($success, $success-invert, $success-hover, $success-gradient),
+    "warning": ($warning, $warning-invert, $warning-hover, $warning-gradient),
+    "danger": ($danger, $danger-invert, $danger-hover, $danger-gradient),
+    "black": ($black, $white, $black-hover, $black-gradient),
+    "white": ($white, $black, $white-hover, $white-gradient));
+
+$mixer-colors: (
+    "primary": ($mixer-primary, $mixer-primary-invert),
+    "dark": ($mixer-dark, $mixer-dark-invert),
+    "brand": ($mixer-brand, $mixer-brand-invert)
+);
+
+// Theme Colors //
+// Dark
+$td-primary: #1F2029;
+$td-primary-dark: darken($td-primary, 6%);
+$td-primary-light: lighten($td-primary, 6%);
+$td-primary-invert: findColorInvert($td-primary);
+
+// body {
+//     background: $td-primary;
+//     background: $td-primary-dark;
+//     background: $td-primary-light;
+//     background: $td-primary-invert;
+// }
+// White
+
+// General color scheme
+:root {
+    // --border-radius-medium: 75px !important;
+    // --button-padding-x: 1.5rem !important;
+    --primary-purple-light: #3d3856;
+    --primary-purple: #302D45;
+    --primary-purple-rgb: 48, 45, 69;
+    --primary-dark-purple: #12111A;
+    --primary-dark-purple-rgb: 18, 17, 26;
+    --twixera-border-radius-small: 10px;
+    --twixera-border-radius-medium: 20px;
+    --twixera-border-radius-large: 30px;
+    --twixera-spacing-small: 10px;
+    --twixera-spacing-medium: 20px;
+    --twixera-spacing-large: 40px;
+}
+
+$primary-purple-light: var(--primary-purple-light);
+$primary-purple: var(--primary-purple);
+$primary-purple-rgb: var(--primary-purple-rgb);
+$primary-dark-purple: var(--primary-dark-purple);
+$primary-dark-purple-rgb: var(--primary-dark-purple-rgb);
+
+$twixera-border-radius-small: var(--twixera-border-radius-small);
+$twixera-border-radius-medium: var(--twixera-border-radius-medium);
+$twixera-border-radius-large: var(--twixera-border-radius-large);
+
+$twixera-spacing-small: var(--twixera-spacing-small);
+$twixera-spacing-medium: var(--twixera-spacing-medium);
+$twixera-spacing-large: var(--twixera-spacing-large);

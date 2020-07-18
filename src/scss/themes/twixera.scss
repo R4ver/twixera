@@ -1,0 +1,26 @@
+@import "../utilities/all";
+
+// Theme Colors //
+// Dark
+
+.twixera--theme-twixera .side-nav {
+    background-color: var(--color-background-base) !important;
+}
+
+.twixera--theme-twixera .side-nav__overlay-wrapper {
+    background-color: var(--color-background-base) !important;
+}
+
+.twixera--theme-twixera .chat-room {
+    background: var(--color-background-base) !important;
+}
+
+.tw-border-bottom-left-radius-large {
+    border-bottom-left-radius: 6px!important;
+    border-bottom-left-radius: var(--border-radius-medium)!important;
+}
+
+// .tw-core-button-label {
+//     padding: 0 1rem;
+//     padding: 0 var(--button-padding-x);
+// }

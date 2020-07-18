@@ -1,0 +1,157 @@
+@mixin shadow($level, $invert: false){
+    @if $level == 1 {
+        @if $invert == true {
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.12);
+        } @else {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+    }
+    @if $level == 2 {
+        @if $invert == true {
+            box-shadow: 0 -3px 6px rgba(0,0,0,0.16);
+        } @else {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16);           
+        }
+    }
+    @if $level == 3  {
+        @if $invert == true {
+            box-shadow: 0 -9px 16px rgba(0,0,0,0.24);
+        } @else {
+            box-shadow: 0 9px 16px rgba(0,0,0,0.24);        
+        }
+    }
+    @if $level == 4  {
+        @if $invert == true {
+            box-shadow: 0 -14px 28px rgba(0,0,0,0.25);
+        } @else {
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+        }
+    }
+    @if $level == 5  {
+        @if $invert == true {
+            box-shadow: 0 -19px 38px rgba(0,0,0,0.30);
+        } @else {
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30);
+        }
+        
+    }
+}
+
+@mixin arrow($color, $size, $pointer-events, $thickness:1px, $state:"gc") {
+    & a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    & a::after {
+        content: " ";
+        display: block;
+        position: relative;
+        width: $size;
+        height: $size;
+
+        border: $thickness solid getColor($color, $state);
+        border-right: 0;
+        border-top: 0;
+        transform: rotate(-45deg);
+        transform-origin: center;
+
+        @if $pointer-events==true {
+            pointer-events: auto;
+        }
+
+        @else {
+            pointer-events: none;
+        }        
+
+        @if $pointer-events==true {
+            &:hover {
+                border-color: getColor($color, 'gc');
+            }
+        }
+    }
+
+    &.is-left a::after {
+        margin-right: 10px;
+        transform: rotate(45deg);
+    }
+
+    &.is-right a::after {
+        margin-left: 10px;
+        transform: rotate(225deg);
+    }
+
+    &.is-up a::after {
+        margin-top: 10px;
+        transform: rotate(135deg);
+    }
+
+    &.is-down a::after {
+        margin-bottom: 10px;
+        transform: rotate(-45deg);
+    }
+}
+
+@mixin triangle($color, $size) {
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+
+    &.arrow-left::after {
+        top: 50%;
+        border-top: $size solid transparent;
+        border-right: $size solid $color;
+        border-bottom: $size solid transparent;
+        transform: translateY(-50%);
+    }
+
+    &.arrow-right::after {
+        top: 50%;
+        border-top: $size solid transparent;
+        border-left: $size solid $color;
+        border-bottom: $size solid transparent;
+        transform: translateY(-50%);
+    }
+
+    &.arrow-up::after {
+        left: 50%;
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        transform: translateX(-50%);
+    }
+
+    &.arrow-down::after {
+        top: 100%;
+        left: 50%;
+        border-top: $size solid $color;
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        transform: translateX(-50%);
+    }
+}
+
+@mixin breakpoint($point) {
+    @if $point==desktop {
+        @media (max-width: 1600px) {
+            @content;
+        }
+    }
+
+    @else if $point==laptop {
+        @media (max-width: 1366px) {
+            @content;
+        }
+    }
+
+    @else if $point==mobile {
+        @media (max-width: 650px) {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+.eq-notification {
+    display: block;
+    padding: 8px 16px;
+
+    &.eq-live-notification {
+        user-select: none;
+        margin-left: 12px;
+        border-radius: 3px;
+    }
+
+    @each $name,
+    $pair in $colors {
+        $color: nth($pair, 1);
+        $color-invert: nth($pair, 2);
+
+        &.is-#{$name} {
+            color: $color-invert;
+            background-color: $color;
+        }
+    }
+}
