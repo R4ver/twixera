@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Markdown from "markdown-to-jsx";
 
+import { version } from "PackageConfig";
+
 const Dashboard = ({news}) => {
     return (
         <div className="twixera-page dashboard">
@@ -30,6 +32,10 @@ const Dashboard = ({news}) => {
                 >
                     Join discord!
                 </a>
+                
+                <div className="version-number">
+                    <span>version: {version} {process.env.NODE_ENV === "development" ? "DEV" : ""}</span>
+                </div>
             </section>
         </div>
     );

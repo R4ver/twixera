@@ -28,13 +28,11 @@ const initialSate = {
             href
         }
     },
-    settings: {
-        pathname: "dashboard"
-    },
+    settings: {},
     twixera: {
         env: "",
         emotes: [],
-        module_context: [],
+        module_context: []
     }
 };
 const store = createContext(initialSate);

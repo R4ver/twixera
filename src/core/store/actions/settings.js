@@ -8,12 +8,12 @@ export const INIT_SETTINGS = payload => ({
     payload
 })
 
-export const TOGGLE_SETTING = (id, active) => ({
-    type: types.TOGGLE_SETTING,
+export const UPDATE_SETTING = (id, value) => ({
+    type: types.UPDATE_SETTING,
     stateKey: [stateKey],
     payload: {
         id,
-        active
+        value
     }
 })
 

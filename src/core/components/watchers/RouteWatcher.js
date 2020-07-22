@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useStore } from "Store";
 import { moduleGroups } from "Core/ModuleLoader";
 import Log from "Core/utils/log";
@@ -45,13 +45,14 @@ function getRouteFromPath(path) {
 
 const RouteWatcher = () => {
     const [state, dispatch] = useStore();
+    let previousPath = useRef(state.location.previous.pathname);
 
     useEffect( () => {
         if ( !state.twixera.router ) return;
-        if ( state.twixera.router.history.location.hash !== "" ) return;
 
         state.twixera.router.history.listen((location) => {
-            if (location.hash !== "") return;
+            if ( location.pathname === previousPath.current ) return;
+
             dispatch(SET_LOCATION(location));
         });
 
@@ -59,9 +60,11 @@ const RouteWatcher = () => {
     }, [state.twixera.router.history.location.pathname])
 
     useEffect(() => {
+        previousPath.current = state.location.previous.pathname;
         const path = state.location.current.pathname;
-        const previousPath = state.location.previous.pathname;
         const route = getRouteFromPath(path);
+
+
 
         (async () => {
             let channel;

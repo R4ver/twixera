@@ -1,38 +1,26 @@
 import React from "react";
 import { useStore } from "Store";
-import { TOGGLE_SETTING } from "Store/actions/settings";
 
-import Switch from "./Switch";
+import ToggleSetting from "./ToggleSetting";
+import SelectSetting from "./SelectSetting";
 
-const Setting = ({id, active, value, description, name, soon, childSettings, values = null, disabled}) => {
+const Setting = props => {
     const [, dispatch] = useStore();
 
-    return (
-        <div className={`twixera-card setting-id-${id} ${active ? "is-active" : "is-inactive"}`}>
-            <div className="twixera-setting">
-                <div className="twixera-setting-info">
-                    <header>
-                        <h1 className="twixera-title">
-                            {name}
+    const renderSettingFromType = () => {
+        switch (props.type) {
+            case "toggle":
+                return <ToggleSetting {...props} dispatch={dispatch} />
 
-                            {disabled ? 
-                                <span className="twixera-tooltip is-info is-small"> ― Globally Disabled</span> 
-                                : 
-                                ""
-                            } 
-                            {(soon ? "- (Soon™)": "")}</h1>
-                        <Switch 
-                            className="twixera-settings-switch" 
-                            value={active}
-                            onChange={() => dispatch(TOGGLE_SETTING(id, !active))}
-                        />
-                    </header>
-                    
-                    { description && <h2 className="twixera-subtitle">{description}</h2> }
-                </div>
-            </div>
-        </div>
-    )
+            case "select":
+                return <SelectSetting {...props} dispatch={dispatch} />
+                
+            default:
+                return null
+        }
+    }
+
+    return renderSettingFromType();
 }
 
 export default Setting;

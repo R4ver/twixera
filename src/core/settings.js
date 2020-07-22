@@ -37,7 +37,8 @@ export const addSetting = ({
     defaultValue, 
     editable = true, 
     auth = false,
-    disabled = false
+    disabled = false,
+    type = null
 }) => {
 
     if (id in settings) {
@@ -59,7 +60,8 @@ export const addSetting = ({
         childSettings,
         editable,
         auth,
-        disabled
+        disabled,
+        type
     };
 }
 

@@ -3,6 +3,13 @@
 // Theme Colors //
 // Dark
 
+.twixera--theme-twixera:root {
+    --color-background-base: #1D1B29;
+    --color-background-base-rgb: 29, 27, 41;
+    --color-background-body: #12111A;
+    --color-background-body-rgb: 18, 17, 26;
+}
+
 .twixera--theme-twixera .side-nav {
     background-color: var(--color-background-base) !important;
 }
