@@ -61,6 +61,8 @@ $close-button-size: 42px;
     max-width: 1224px;
     z-index: 9999;
 
+    color: $white;
+
     transform: translateX(-50%);
 
     .twixera-settings-header {
@@ -200,6 +202,14 @@ $close-button-size: 42px;
                     margin-top: $twixera-spacing-small;
                 }
             }
+
+            .version-number {
+                flex-grow: 1;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+                opacity: .5;
+            }
         }
 
         &.settings {
@@ -217,87 +227,6 @@ $close-button-size: 42px;
                 margin-left: $twixera-spacing-small;
             }
         }
-    }
-
-    .twixera-setting {
-        &.is-soon {
-            user-select: none;
-            pointer-events: none;
-            opacity: .5;
-        }
-        
-        .twixera-settings-multiple-choice {
-            display: flex;
-            position: relative;
-            padding-top: $spacing-medium;
-
-            button {
-                padding: $spacing-small 16px;
-                width: 100%;
-                font-weight: 400;
-                text-transform: capitalize;
-
-                color: rgba($white, .5);
-
-                background-color: rgba($td-primary-dark, .5);
-            }
-
-            button:hover {
-                color: $white;
-                background-color: rgba($td-primary-dark, .7);
-            }
-
-            button.is-active {
-                color: $white;
-                background: $primary;
-            }
-        }
-
-        button.is-soon {
-            user-select: none;
-            color: rgba($white, .5);
-
-            &:hover {
-                background-color: $td-primary-dark;
-            }
-
-            &:hover::after {
-                opacity: 1;
-            }
-
-            &::after {
-                content: "Soon™";
-                display: block;
-                position: absolute;
-                top: -100%;
-                left: 50%;
-                padding: 6px;
-                opacity: 0;
-
-                color: $white;
-
-                transform: translateX(-50%);
-                transition: all .15s ease;
-            }
-        }
-
-        header + .twixera-subtitle {
-            padding-bottom: 20px;
-        }
-
-        .twixera-title {
-            font-size: 20px;
-        }
-
-        .twixera-subtitle {
-            padding-top: $spacing-medium;
-            font-size: 16px;
-            font-weight: 400;
-        }
-    }
-
-    .twixera-item-list {
-        width: 100%;
     }
 }
 

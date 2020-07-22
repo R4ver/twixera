@@ -1,0 +1,94 @@
+.twixera-setting {
+    &.is-soon {
+        user-select: none;
+        pointer-events: none;
+        opacity: .5;
+    }
+    
+    &.type-select .setting-values {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding-top: $spacing-medium;
+
+        button {
+            padding: $spacing-small 16px;
+            width: 100%;
+            font-weight: 400;
+            text-transform: capitalize;
+
+            color: rgba($white, .5);
+            font-size: 16px;
+            text-align: center;
+
+            background-color: $primary-dark-purple;
+        }
+
+        button:hover {
+            color: $white;
+            background-color: $primary-purple-light;
+        }
+
+        $radius: 10px;
+
+        button:first-child {
+            border-radius: $radius 0 0 $radius;
+        }
+
+        button:last-child {
+            border-radius: 0 $radius $radius 0;
+        }
+
+        button.is-active {
+            color: $white;
+            background: rgba($primary, .8);
+        }
+    }
+
+    button.is-soon {
+        user-select: none;
+        color: rgba($white, .5);
+
+        &:hover {
+            background-color: $td-primary-dark;
+        }
+
+        &:hover::after {
+            opacity: 1;
+        }
+
+        &::after {
+            content: "Soon™";
+            display: block;
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            padding: 6px;
+            opacity: 0;
+
+            color: $white;
+
+            transform: translateX(-50%);
+            transition: all .15s ease;
+        }
+    }
+
+    header + .twixera-subtitle {
+        padding-bottom: 20px;
+    }
+
+    .twixera-title {
+        font-size: 20px;
+    }
+
+    .twixera-subtitle {
+        padding-top: 0;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+
+.twixera-item-list {
+    width: 100%;
+}

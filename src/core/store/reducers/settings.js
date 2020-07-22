@@ -6,7 +6,7 @@ import Log from "Core/utils/log";
 
 export const types = {
     INIT_SETTINGS: "INIT_SETTINGS",
-    TOGGLE_SETTING: "TOGGLE_SETTING",
+    UPDATE_SETTING: "UPDATE_SETTING",
     SET_SETTINGS_PATH: "SET_SETTINGS_PATH",
 };
 
@@ -22,12 +22,12 @@ const initSettings = (state, {
             category,
             childSettings,
             soon = false,
-            values = null,
+            values = [],
             defaultValue,
             editable = true,
             auth = false,
             disabled = false,
-            value
+            type
         } = setting;
 
         if (id in state) {
@@ -35,19 +35,26 @@ const initSettings = (state, {
         }
 
         if (disabled) {
-            toggleSetting(state, {
+            updateSetting(state, {payload: {
                 id,
                 value: false
-            });
+            }});
         }
 
-        const active = getSetting(id) !== undefined ? getSetting(id) : defautValue;
+        const active = 
+                getSetting(id) &&
+                getSetting(id) !== undefined && 
+                getSetting(id) !== null &&
+                getSetting(id) !== ""
+                    ? true : false;
+
+        const value = getSetting(id) || defaultValue;
 
         state = {
             ...state,
-            [id]: active,
-            [`${id}_ui`]: {
+            [id]: {
                 id,
+                active,
                 name,
                 description,
                 category,
@@ -60,6 +67,7 @@ const initSettings = (state, {
                 editable,
                 auth,
                 disabled,
+                type,
             },
         };
     })
@@ -70,14 +78,23 @@ const initSettings = (state, {
     return state;
 }
 
-const toggleSetting = (state, {payload: {id, active}}) => {
-    setSetting(id, active);
+const updateSetting = (state, {payload: {id, value}}) => {
+    setSetting(id, value);
+
+    const active =
+        getSetting(id) &&
+        getSetting(id) !== undefined &&
+        getSetting(id) !== null &&
+        getSetting(id) !== ""
+            ? true
+            : false;
+
     state = {
         ...state,
-        [id]: active,
-        [`${id}_ui`]: {
-            ...state[`${id}_ui`],
-            active,
+        [id]: {
+            ...state[id],
+            value,
+            active
         },
     };
 
@@ -93,7 +110,7 @@ const setSettingsPath = (state, { payload }) => {
 
 const settingsReducer = createReducer({}, {
     INIT_SETTINGS: initSettings,
-    TOGGLE_SETTING: toggleSetting,
+    UPDATE_SETTING: updateSetting,
     SET_SETTINGS_PATH: setSettingsPath
 });
 

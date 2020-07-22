@@ -82,24 +82,48 @@
         return `${rgb.r}, ${rgb.g}, ${rgb.b}`
     }
 
-    function setTheme(theme) {
-        for (var color in themes[theme]) {
-            console.log("THEME: ", theme);
-            console.log("COLOR: ", themes[theme][color])
-            var value = themes[theme][color];
-            var valurRgb = hexToRgb(themes[theme][color]);
+    // for (var color in themes[theme]) {
+        //     console.log("THEME: ", theme);
+        //     console.log("COLOR: ", themes[theme][color])
+        //     var value = themes[theme][color];
+        //     var valurRgb = hexToRgb(themes[theme][color]);
 
-            setCssVariable(color, value);
-            setCssVariable(color + "-rgb", valurRgb);
+        //     setCssVariable(color, value);
+        //     setCssVariable(color + "-rgb", valurRgb);
+        // }
+
+    function setTheme(theme) {
+        var twitchDarkClass = "tw-root--theme-dark";
+
+        switch (theme) {
+            case "twixera":
+                document.getElementsByTagName("html")[0].classList.remove(twitchDarkClass);
+                document.getElementsByTagName("html")[0].classList.add(`twixera--theme-${theme}`);
+                document.getElementsByTagName("html")[0].classList.add(twitchDarkClass);
+                document.body.classList.add("theme", theme);
+                break;
+
+            case "dark":
+                document.getElementsByTagName("html")[0].classList.remove(`twixera--theme-${theme}`);
+                document.body.classList.add("theme", theme);
+                break;
+        
+            default:
+                break;
         }
 
-        document.getElementsByTagName("html")[0].classList.add(`twixera--theme-${theme}`)
-        document.body.classList.add("theme", theme);
+        localStorage.setItem("twixera_twitch_theme", JSON.stringify(theme));
     }
     
     var getTheme = JSON.parse(localStorage.getItem("twixera_twitch_theme"));
-    var theme = getTheme ? getTheme : "twixera";
-    setTheme(theme);
+    var getTwilightTheme = JSON.parse(localStorage.getItem("twilight.theme"));
+
+    if ( !getTheme ) {
+        setTheme("twixera");
+    } else {
+        var theme = getTheme === "twixera" ? "twixera" : (getTwilightTheme === 1 ? "dark" : "white")
+        setTheme(theme);
+    }
     
 
     if (!head) return;

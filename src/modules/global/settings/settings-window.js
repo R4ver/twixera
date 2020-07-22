@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState } from "react"
 import Log from "Core/utils/log";
 import { useStore } from "Store";
 import { SET_SETTINGS_PATH } from "Store/actions/settings";
@@ -8,21 +8,38 @@ import SettingsPage from "./components/SettingsPage";
 import NavLink from "./components/NavLink";
 
 const SettingsWindow = ({closeSettings, news}) => {
-    const [state, dispatch] = useStore();
+    const [state] = useStore();
+    const [currentPage, setCurrentPage] = useState("dashboard");
+
+    const changePage = page => {
+        setCurrentPage(page);
+    }
 
     const renderPage = pageName => {
-        const settings = Object.values(state.settings).filter( value => value.category === state.settings.pathname );
+        const settings = Object.values(state.settings).filter( value => value.category === pageName );
 
-        switch (pageName) {
+        switch (currentPage) {
             case "dashboard":
-                return <Dashboard news={news}/>
-
-            case "chat":
-                return <SettingsPage settings={settings} />
+                return <Dashboard news={news} />;
 
             default:
-                return <Dashboard />;
+                return <SettingsPage settings={settings} />;
         }
+    }
+
+    const renderNav = () => {
+        const filteredCategories = Object.values(state.settings).map( value => {
+            if ( value.category && !value.disabled ) {
+                return value.category
+            }
+        } ).filter( e => e !== undefined);
+        const categories = ["dashboard", ...new Set(filteredCategories)]
+        
+        return categories.map((category) => (
+            <NavLink key={category} to={category} currentPage={currentPage} activeClassname="is-active" style={{textTransform: "capitalize"}} onClick={() => changePage(category)}>
+                {category}
+            </NavLink>
+        ));
     }
 
     return (
@@ -39,17 +56,12 @@ const SettingsWindow = ({closeSettings, news}) => {
                                 <img src="https://r4ver.com/twixera/assets/twixera-logo.svg" />
                             </div>
 
-                            <NavLink to="dashboard" activeClassname="is-active">
-                                Dashboard
-                            </NavLink>
-                            <NavLink to="chat" activeClassname="is-active">
-                                Chat
-                            </NavLink>
+                            {renderNav()}
                         </nav>
                     </div>
 
                     <div className="header-right">
-                        {state.user.displayName &&
+                        {state.user.displayName && (
                             <div className="twixera-user">
                                 <span>{state.user.displayName}</span>
                                 <div className="twixera-avatar-wrapper">
@@ -59,7 +71,7 @@ const SettingsWindow = ({closeSettings, news}) => {
                                     />
                                 </div>
                             </div>
-                        }
+                        )}
 
                         <button
                             onClick={closeSettings}
@@ -71,7 +83,7 @@ const SettingsWindow = ({closeSettings, news}) => {
                 </header>
 
                 <div className="twixera-settings-body">
-                    {renderPage(state.settings.pathname)}
+                    {renderPage(currentPage)}
                 </div>
             </div>
         </>

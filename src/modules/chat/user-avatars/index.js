@@ -14,6 +14,7 @@ const UserAvatars = () => {
     }, [])
 
     const addAvatar = async ({ detail: { elem, user, badges} }) => {
+
         const isMod = badges.hasOwnProperty("moderator");
         const isBroadcaster = badges.hasOwnProperty("broadcaster");
 
@@ -57,6 +58,7 @@ UserAvatars.settings = [
         description: "Adds user avatars to the chat messages. Collab with @ACPixel",
         category: "chat",
         defaultValue: true,
+        type: "toggle"
     },
 ];
 

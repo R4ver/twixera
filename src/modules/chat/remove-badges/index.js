@@ -43,6 +43,7 @@ RemoveBadges.settings = [
         description: "Remove all badges from chat messages except moderator and sub badges",
         category: "chat",
         defaultValue: false,
+        type: "toggle"
     },
 ];
 

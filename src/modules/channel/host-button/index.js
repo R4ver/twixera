@@ -60,6 +60,8 @@ ChannelHostButton.settings = [
         description: "Adds a button to host the current channel you are watching.",
         category: "channel",
         defaultValue: false,
+        type: "toggle",
+        disabled: true
     },
 ];
 

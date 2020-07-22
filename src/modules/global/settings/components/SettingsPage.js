@@ -8,6 +8,11 @@ const SettingsPage = ({ settings }) => {
         let rightColumn = [];
 
         settings.map((setting, index) => {
+            if ( settings.length === 1 ) {
+                leftColumn.push(setting);
+                return;
+            }
+
             if ( index % 2) {
                 rightColumn.push(setting);
             } else {

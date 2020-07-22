@@ -21,6 +21,7 @@ export const moduleGroups = {
 export const ModuleLoader = () => {
     const [state, dispatch] = useContext(store);
     const [modules, setModules] = useState({
+        general: [],
         chat: [],
         channel: [],
         frontPage: [],
@@ -46,10 +47,12 @@ export const ModuleLoader = () => {
                 module.setup(state, dispatch);
             }
             
-            TwixeraModules[context] = [
-                ...TwixeraModules[context] || [],
-                module
-            ]
+            if ( module ) {
+                TwixeraModules[context] = [
+                    ...TwixeraModules[context] || [],
+                    module
+                ]
+            }
         });
 
         dispatch(INIT_SETTINGS(getSettings()));
@@ -61,17 +64,17 @@ export const ModuleLoader = () => {
 
     // Log.log("Module state", modules);
     // Log.log("Current app state: ", state);
-    const renderedModules = state.twixera.module_context.flatMap( context => modules[context].map((Component, index) => {
-        const active = state.settings[Component.settings[0].id];
+    const renderedModules = state.twixera.module_context.flatMap( (context) =>
+            modules[context] && modules[context].map((Component, index) => {
+                const active = state.settings[Component.settings[0].id].active;
 
-        if ( !active ) return null;
+                if ( !active ) return null;
 
-        return (
-            <Component key={index} />
-        )
-    }))
+                return <Component key={index} />;
+            })
+    ).filter(e => e !== undefined && e !== null);
 
-    Log.info("Loaded modules", renderedModules);
+    Log.info(`Loaded modules for ${state.twixera.module_context}`, renderedModules);
 
     return <>
         {renderedModules}
@@ -89,7 +92,6 @@ export const GlobalModuleLoader = () => {
         modules.keys().map((item) => {
             item = item.replace("./", "");
             const context = /^(\w+)\//.exec(item)[1];
-            console.log(context);
             let module = require(`../modules/global/${item}`).default;
 
             if (module && module.settings) {
