@@ -38,7 +38,8 @@ export const addSetting = ({
     editable = true, 
     auth = false,
     disabled = false,
-    type = null
+    type = null,
+    messageParserCheck = null
 }) => {
 
     if (id in settings) {
@@ -61,7 +62,8 @@ export const addSetting = ({
         editable,
         auth,
         disabled,
-        type
+        type,
+        messageParserCheck
     };
 }
 

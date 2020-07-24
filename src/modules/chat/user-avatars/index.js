@@ -14,6 +14,8 @@ const UserAvatars = () => {
     }, [])
 
     const addAvatar = async ({ detail: { elem, user, badges} }) => {
+        const hasAvatar = elem.querySelector(".twixera-user-avatar-wrapper");
+        if ( hasAvatar ) return;
 
         const isMod = badges.hasOwnProperty("moderator");
         const isBroadcaster = badges.hasOwnProperty("broadcaster");
@@ -58,7 +60,15 @@ UserAvatars.settings = [
         description: "Adds user avatars to the chat messages. Collab with @ACPixel",
         category: "chat",
         defaultValue: true,
-        type: "toggle"
+        type: "toggle",
+        messageParserCheck: function(elem, msgObject) {
+            console.log(elem);
+            console.log(msgObject);
+
+            if ( !elem.querySelector(`twixera-user-avatar-wrapper`) ) {
+                return true;
+            }
+        }
     },
 ];
 
