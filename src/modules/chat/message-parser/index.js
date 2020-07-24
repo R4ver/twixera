@@ -39,7 +39,9 @@ const MessageParser = () => {
         });
         document.dispatchEvent(removeBadges);
 
-        if (!elem.querySelector(`twixera-user-avatar-wrapper`)) {
+        Log.debug("Check message: ", state.settings.user_avatars.messageParserCheck(elem, msgObject));
+
+        if (state.settings.user_avatars.messageParserCheck(elem, msgObject)) {
             const event = new CustomEvent("twixera-add-message-avatar", {
                 detail: {
                     elem,
