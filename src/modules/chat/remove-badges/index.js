@@ -5,17 +5,18 @@ const avatarCacheKey = "twixera-user-avatar-wrapper";
 
 const RemoveBadges = () => {
     useEffect(() => {
-        document.addEventListener("twixera-remove-message-badges", removeBadges);
+        document.addEventListener("twixera-new-message", removeBadges);
 
         return () => {
             document.removeEventListener(
-                "twixera-remove-message-badges",
+                "twixera-new-message",
                 removeBadges
             );
         };
     }, []);
 
     const removeBadges = ({ detail: { elem } }) => {
+        console.log("Deleting badges", elem)
         const images = elem.firstElementChild.querySelectorAll("img");
 
         for ( let i = 0; i < images.length; i++ ) {
