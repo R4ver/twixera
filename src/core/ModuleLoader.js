@@ -15,6 +15,7 @@ export const moduleGroups = {
     CHANNEL: "channel",
     CHANNEL_SQUAD: "channel_squad",
     DASHBOARD: "dashboard",
+    MOD_DASH: "modDash",
     VOD: "vod",
 };
 
@@ -27,6 +28,7 @@ export const ModuleLoader = () => {
         frontPage: [],
         followingPage: [],
         dashboard: [],
+        modDash: []
     });
 
     useEffect( () => {

@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import Log from "Core/utils/log";
-
-const avatarCacheKey = "twixera-user-avatar-wrapper";
+import { useEffect } from "react";
 
 const RemoveBadges = () => {
     useEffect(() => {

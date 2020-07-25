@@ -18,6 +18,7 @@ const routes = {
     CHANNEL: "CHANNEL",
     CHANNEL_SQUAD: "CHANNEL_SQUAD",
     DASHBOARD: "DASHBOARD",
+    MOD_DASH: "MOD_DASH",
     VOD: "VOD",
 };
 
@@ -29,6 +30,7 @@ const routeKeysToPaths = {
     [routes.CHAT]: /^(\/popout)?\/[a-z0-9-_]+\/chat$/i,
     [routes.VOD]: /^(\/videos\/[0-9]+|\/[a-z0-9-_]+\/clip\/[a-z0-9-_]+)$/i,
     [routes.DASHBOARD]: /^(\/[a-z0-9-_]+\/dashboard|\/u\/[a-z0-9-_]+\/stream-manager)/i,
+    [routes.MOD_DASH]: /^(\/[a-z0-9-_]+\/moderator|\/[a-z0-9-_]+)/i,
     [routes.CHANNEL_SQUAD]: /^\/[a-z0-9-_]+\/squad/i,
     [routes.CHANNEL]: /^\/[a-z0-9-_]+/i,
 };
@@ -67,8 +69,6 @@ const RouteWatcher = () => {
 
 
         (async () => {
-            let channel;
-
             switch (route) {
                 case routes.BROWSE_FOLLOWING:
                     dispatch(SET_MODULE_CONTEXT([moduleGroups[route]]))
@@ -104,6 +104,14 @@ const RouteWatcher = () => {
                 case routes.DASHBOARD:
                     dispatch(SET_MODULE_CONTEXT([moduleGroups[route],  moduleGroups.CHAT]))
                     
+                    waitForLoad("chat").then(() => {
+                        const currentChannel = getCurrentChannel();
+                        dispatch(SET_CHANNEL(currentChannel));
+                    });
+                    break;
+                case routes.MOD_DASH:
+                    dispatch(SET_MODULE_CONTEXT([moduleGroups[route], moduleGroups.CHAT]))
+                    console.log("WE ARE ON THE MOD DASH");
                     waitForLoad("chat").then(() => {
                         const currentChannel = getCurrentChannel();
                         dispatch(SET_CHANNEL(currentChannel));
