@@ -7,14 +7,14 @@ export const setSetting = (id, value) => {
     return setting;
 }
 
-export const getSetting = id => {
-    const value = storage.get(id);
+export const getSetting = (id, childId = null) => {
+    const value = childId ? storage.get(`${id}_${childId}`) : storage.get(id);
 
     if ( value !== null ) {
         return value;
     }
 
-    const setting = settings[id];
+    const setting = childId ? settings[id].childSettings[childId] : settings[id];
     return setting ? setting.defaultValue : null;
 }
 

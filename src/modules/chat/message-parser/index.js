@@ -37,6 +37,7 @@ const MessageParser = () => {
                 elem,
                 user,
                 badges,
+                rawMessage: msgObject
             },
         });
         

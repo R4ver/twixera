@@ -10,6 +10,13 @@ export const types = {
     SET_SETTINGS_PATH: "SET_SETTINGS_PATH",
 };
 
+const isActive = (id, childId = null) =>
+    getSetting(id, childId) &&
+    getSetting(id, childId) !== undefined &&
+    getSetting(id, childId) !== null &&
+    getSetting(id, childId) !== "" ?
+    true : false;
+
 const initSettings = (state, {
     payload
 }) => {
@@ -41,14 +48,15 @@ const initSettings = (state, {
             }});
         }
 
-        const active = 
-                getSetting(id) &&
-                getSetting(id) !== undefined && 
-                getSetting(id) !== null &&
-                getSetting(id) !== ""
-                    ? true : false;
+        if ( childSettings ) {
+            childSettings.forEach(e => {
+                e.value = getSetting(id, e.id) || e.defaultValue;
+                e.active = isActive(id, e.id);
+            })
+        }
 
         const value = getSetting(id) || defaultValue;
+        const active = isActive(id);
 
         state = {
             ...state,

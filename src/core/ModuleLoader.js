@@ -43,7 +43,14 @@ export const ModuleLoader = () => {
 
             if ( module && module.settings ) {
                 console.log(module.settings);
-                module.settings.forEach(addSetting)
+
+                module.settings.forEach( setting => {
+                    if ( setting.childSettings ) {
+                        setting.childSettings.forEach(e => e.id = `${setting.id}_${e.id}`);
+                    }
+
+                    addSetting(setting);
+                })
             }
 
             if ( module && module.setup ) {
