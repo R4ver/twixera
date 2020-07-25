@@ -6,10 +6,10 @@ const avatarCacheKey = "twixera-user-avatar-wrapper";
 const UserAvatars = () => {
 
     useEffect( () => {
-       document.addEventListener("twixera-add-message-avatar", addAvatar);
+       document.addEventListener("twixera-new-message", addAvatar);
 
         return () => {
-            document.removeEventListener("twixera-add-message-avatar", addAvatar);
+            document.removeEventListener("twixera-new-message", addAvatar);
         };
     }, [])
 
@@ -60,15 +60,7 @@ UserAvatars.settings = [
         description: "Adds user avatars to the chat messages. Collab with @ACPixel",
         category: "chat",
         defaultValue: true,
-        type: "toggle",
-        messageParserCheck: function(elem, msgObject) {
-            console.log(elem);
-            console.log(msgObject);
-
-            if ( !elem.querySelector(`twixera-user-avatar-wrapper`) ) {
-                return true;
-            }
-        }
+        type: "toggle"
     },
 ];
 

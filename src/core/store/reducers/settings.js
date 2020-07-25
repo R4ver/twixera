@@ -27,8 +27,7 @@ const initSettings = (state, {
             editable = true,
             auth = false,
             disabled = false,
-            type,
-            messageParserCheck,
+            type
         } = setting;
 
         if (id in state) {
@@ -68,8 +67,7 @@ const initSettings = (state, {
                 editable,
                 auth,
                 disabled,
-                type,
-                messageParserCheck: messageParserCheck,
+                type
             },
         };
     })

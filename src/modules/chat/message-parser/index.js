@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { waitForElement, waitForLoad } from "Core/helpers/elementLoading";
 import { getChatMessageObject, getCurrentChannel } from "Core/utils/twitch";
 import { initialize, deinitialize } from "Core/utils/initialize";
@@ -9,6 +9,11 @@ const avatarCacheKey = "twixera-user-avatar-wrapper";
 
 const MessageParser = () => {
     const [state, dispatch] = useStore();
+    let chatModules = useRef([]);
+
+    useEffect( () => {
+        chatModules.current = Object.values(state.settings).filter(e => e.category === "chat" && e.messageParserCheck);
+    }, [])
 
     useEffect(() => {
         if (!state.channels.length > 0) return;
@@ -26,31 +31,21 @@ const MessageParser = () => {
             deinitialize(`[class^=chat-line__message]`);
         };
     }, [state.channels]);
+    console.log(chatModules)
 
     const parseMessage = (elem, msgObject) => {
         if (!elem || !msgObject) return;
 
         const { badges, user } = msgObject;
 
-        const removeBadges = new CustomEvent("twixera-remove-message-badges", {
+        const event = new CustomEvent("twixera-new-message", {
             detail: {
-                elem
+                elem,
+                user,
+                badges,
             },
         });
-        document.dispatchEvent(removeBadges);
-
-        Log.debug("Check message: ", state.settings.user_avatars.messageParserCheck(elem, msgObject));
-
-        if (state.settings.user_avatars.messageParserCheck(elem, msgObject)) {
-            const event = new CustomEvent("twixera-add-message-avatar", {
-                detail: {
-                    elem,
-                    user,
-                    badges,
-                },
-            });
-            document.dispatchEvent(event);
-        }
+        document.dispatchEvent(event);
     };
 
     return null;
