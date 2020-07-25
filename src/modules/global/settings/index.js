@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import React, { useEffect, useState, useRef } from "react";
 import { waitForElement } from "Core/helpers/elementLoading";
 import Log from "Core/utils/log";
+import { useStore } from "Store";
 
 import SettingsWindow from "./settings-window";
 import { PrependPortal } from "UI";
@@ -10,60 +10,71 @@ const PRIME_BUTTON_SELECTOR = `.top-nav__prime`;
 const MODERATOR_NAV_SECTION = `[data-highlight-selector="mode-management"]`;
 const DASHBOARD_NAV_SECTION = `.announcements-icon--green`;
 
+const contexts = {
+    chat: ".stream-chat-header div:first-child",
+    dashboard: `[data-a-target="user-menu-toggle"]`,
+    modDash: `[data-highlight-selector="mode-management"]`,
+    default: ".top-nav__prime"
+}
+
 const changeLogUrl = "https://r4ver.com/twixera/news";
 
 const TwixeraSettings = () => {
-    const [buttonRoot, setButtonRoot] = useState(null);
+    const [{twixera: { module_context }}] = useStore();
+    const [buttonRoot, setButtonRoot] = useState({
+        button: null,
+        className: []
+    });
+    let portalClass = useRef([]);
     const [showSettings, setShowSettings] = useState(false);
     const [news, setNews] = useState("");
 
     useEffect( () => {
-        (async () => {
-            try {
-                let rootButton = null;
-                rootButton = await waitForElement(PRIME_BUTTON_SELECTOR);
+        ( async () => {
+            const contextKey = module_context[0];
+            let button = null;
+            let className = []
+    
+            switch (contextKey) {
+                case "dashboard":
+                    button = await getElem(contexts[contextKey]);
+                    button = button.parentElement.parentElement.parentElement.firstElementChild;
+                    button.style.marginLeft = "1rem";
+                    break;
 
-                if ( rootButton ) {
-                    setButtonRoot(rootButton);
-                }
-            } catch (error) {
-                Log.error("Couldn't get prime button: ", error);
+                case "chat":
+                    button = await getElem(contexts[contextKey]);
+                    className = ["tw-absolute", "tw-left-0"];
+                    break;
+
+                case "modDash":
+                    button = await getElem(contexts[contextKey])
+                    break;
+            
+                default:
+                    button = await getElem(contexts.default)
+                    break;
             }
+
+            setButtonRoot({
+                button,
+                className
+            });
         })()
-    }, [])
+    }, [module_context])
 
-    useEffect(() => {
-        (async () => {
-            try {
-                let rootButton = null;
-                rootButton = await waitForElement(MODERATOR_NAV_SECTION);
+    const getElem = async (key) => {
+        try {
+            let rootButton = null;
+            rootButton = await waitForElement(key);
 
-                if (rootButton) {
-                    setButtonRoot(rootButton);
-                }
-            } catch (error) {
-                Log.error("Couldn't get prime button: ", error);
+            if (rootButton) {
+                return rootButton;
             }
-        })();
-    }, []);
-
-    useEffect(() => {
-        (async () => {
-            try {
-                let rootButton = null;
-                rootButton = await waitForElement(DASHBOARD_NAV_SECTION);
-
-                if (rootButton) {
-                    rootButton = rootButton.parentElement.parentElement.firstElementChild;
-                    rootButton.style.marginLeft = "1rem";
-
-                    setButtonRoot(rootButton);
-                }
-            } catch (error) {
-                Log.error("Couldn't get prime button: ", error);
-            }
-        })();
-    }, []);
+        } catch (error) {
+            Log.error("Couldn't get settings button root element: ", error);
+        }
+    }
 
     useEffect(() => {
         if (news !== "") return;
@@ -81,11 +92,11 @@ const TwixeraSettings = () => {
         setShowSettings(!showSettings);
     }
 
-    if ( !buttonRoot ) return null;
+    if ( !buttonRoot.button ) return null;
 
     return (
         <>
-            <PrependPortal root={buttonRoot}>
+            <PrependPortal root={buttonRoot.button} className={buttonRoot.className}>
                 <button
                     className="tw-align-items-center tw-align-middle tw-border-bottom-left-radius-medium tw-border-bottom-right-radius-medium tw-border-top-left-radius-medium tw-border-top-right-radius-medium tw-button-icon tw-core-button tw-inline-flex tw-interactive tw-justify-content-center tw-overflow-hidden tw-relative"
                     onClick={toggleShowSettings}
