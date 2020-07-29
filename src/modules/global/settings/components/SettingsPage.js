@@ -28,13 +28,13 @@ const SettingsPage = ({ settings }) => {
         <div className="twixera-page settings">
             <div className="left-column">
                 {sortSettings().leftColumn.map((setting) => (
-                    setting.editable ? <Setting key={setting.id} {...setting} /> : null
+                    !setting.disabled && setting.editable ? <Setting key={setting.id} {...setting} /> : null
                 ))}
             </div>
 
             <div className="right-column">
                 {sortSettings().rightColumn.map((setting) => (
-                    setting.editable ? <Setting key={setting.id} {...setting} /> : null
+                    !setting.disabled && setting.editable ? <Setting key={setting.id} {...setting} /> : null
                 ))}
             </div>
         </div>

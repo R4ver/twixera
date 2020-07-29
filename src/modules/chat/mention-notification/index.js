@@ -23,6 +23,7 @@ const MentionNotifaction = () => {
 
 MentionNotifaction.settings = [
     {
+        disabled: true,
         id: "mention_notification",
         name: "Mention Notification",
         description: "Get a notification sound when someone mentions you in chat",
@@ -35,6 +36,10 @@ MentionNotifaction.settings = [
                 id: "volume",
                 defaultValue: 30,
                 editable: true
+            },
+            {
+                type: "audio",
+
             }
         ]
     },

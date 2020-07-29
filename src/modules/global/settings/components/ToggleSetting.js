@@ -3,7 +3,7 @@ import { UPDATE_SETTING } from "Store/actions/settings";
 
 import Switch from "./Switch";
 
-const ToggleSetting = ({ id, value, name, disabled, soon, description, dispatch}) => (
+const ToggleSetting = ({ active, id, value, name, disabled, soon, description, dispatch, childSettings }) => (
     <div className={`twixera-card setting-id-${id} ${value ? "is-active" : "is-inactive"}`}>
         <div className="twixera-setting type-toggle">
             <div className="twixera-setting-info">
@@ -25,6 +25,14 @@ const ToggleSetting = ({ id, value, name, disabled, soon, description, dispatch}
                 </header>
                 
                 { description && <h2 className="twixera-subtitle">{description}</h2> }
+
+                {active && childSettings && childSettings.map(setting => (
+                    <div key={`${id}_${setting.id}`} className="twixera-child-settings">
+                        <input type="range" id="vol" name="vol" min="0" max="1" onChange={e => dispatch(UPDATE_SETTING(`${setting.id}`, e.target.value))}/>
+                    </div>
+                ))
+                    
+                }
             </div>
         </div>
     </div>
