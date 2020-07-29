@@ -19,8 +19,6 @@ const Twixera = () => {
     )
 }
 
-console.log("Hello world");
-
 const extensionDiv = document.createElement('div');
 extensionDiv.id = "twixera-root";
 document.body.appendChild(extensionDiv);

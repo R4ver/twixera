@@ -42,7 +42,6 @@ export const ModuleLoader = () => {
             let module = require(`../modules/${item}`).default;
 
             if ( module && module.settings ) {
-                console.log(module.settings);
                 module.settings.forEach(addSetting)
             }
 

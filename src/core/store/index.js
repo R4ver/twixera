@@ -58,15 +58,6 @@ const StateProvider = ( { children } ) => {
 
     useEffect( () => {
         storage.init();
-        console.log("Initializing storage");
-
-        // let pushState = history.pushState;
-        // history.pushState = function () {
-        //     pushState.apply(history, arguments);
-        //     updateLoaction(); // Some event-handling function
-        // };
-
-        // window.addEventListener("popstate", updateLoaction);
     }, [])
 
     useEffect(() => {

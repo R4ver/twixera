@@ -34,7 +34,6 @@ const TwixeraSettings = () => {
             const contextKey = module_context[0];
             let button = null;
             let className = []
-    
             switch (contextKey) {
                 case "dashboard":
                     button = await getElem(contexts[contextKey]);
