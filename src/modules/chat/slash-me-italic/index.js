@@ -23,9 +23,11 @@ const SlashMeItalic = () => {
 SlashMeItalic.settings = [
     {
         id: "slash_me_italic",
+        name: "New /me styling",
+        description: "Make the /me command use white font color and italic styling",
         category: "chat",
         defaultValue: true,
-        editable: false,
+        type: "toggle"
     },
 ];
 
