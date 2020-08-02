@@ -76,16 +76,19 @@ const StateProvider = ( { children } ) => {
                     return;
                 }
                 const user = connectStore.getState().session.user;
-
-                waitForElement(`[data-a-target='top-nav-avatar'] img`).then( elem => {    
-                    dispatch(INIT_USER({
-                        id: user.id,
-                        displayName: user.displayName,
-                        avatar: elem.src,
-                        authToken: user.authToken,
-                        login: user.login, 
-                    }))
-                });
+                waitForElement(`[aria-label="User Avatar"] img`).then(
+                    (elem) => {
+                        dispatch(
+                            INIT_USER({
+                                id: user.id,
+                                displayName: user.displayName,
+                                avatar: elem.src,
+                                authToken: user.authToken,
+                                login: user.login,
+                            })
+                        );
+                    }
+                );
                 
             } catch (error) {
                 dispatch(SET_ENV("offline"));
@@ -93,7 +96,7 @@ const StateProvider = ( { children } ) => {
             }          
        })()
     }, [])
-
+    
     return <Provider value={[ state, dispatch ]}>{children}</Provider>;
 };
 

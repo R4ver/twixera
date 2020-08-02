@@ -6,16 +6,12 @@ import { useStore } from "Store";
 import SettingsWindow from "./settings-window";
 import { PrependPortal } from "UI";
 
-const PRIME_BUTTON_SELECTOR = `.top-nav__prime`;
-const MODERATOR_NAV_SECTION = `[data-highlight-selector="mode-management"]`;
-const DASHBOARD_NAV_SECTION = `.announcements-icon--green`;
-
 const contexts = {
     chat: ".stream-chat-header div:first-child",
     dashboard: `[data-a-target="user-menu-toggle"]`,
     modDash: `[data-highlight-selector="mode-management"]`,
-    default: ".top-nav__prime"
-}
+    default: ".top-nav__prime",
+};
 
 const changeLogUrl = "https://r4ver.com/twixera/news";
 
@@ -36,6 +32,7 @@ const TwixeraSettings = () => {
             let className = []
             switch (contextKey) {
                 case "dashboard":
+                    console.log("We at dashboard");
                     button = await getElem(contexts[contextKey]);
                     button = button.parentElement.parentElement.parentElement.firstElementChild;
                     button.style.marginLeft = "1rem";

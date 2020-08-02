@@ -66,8 +66,6 @@ const RouteWatcher = () => {
         const path = state.location.current.pathname;
         const route = getRouteFromPath(path);
 
-
-
         (async () => {
             switch (route) {
                 case routes.BROWSE_FOLLOWING:
@@ -103,7 +101,7 @@ const RouteWatcher = () => {
                     break;
                 case routes.DASHBOARD:
                     dispatch(SET_MODULE_CONTEXT([moduleGroups[route],  moduleGroups.CHAT]))
-                    
+                    console.log("dashboard");
                     waitForLoad("chat").then(() => {
                         const currentChannel = getCurrentChannel();
                         dispatch(SET_CHANNEL(currentChannel));

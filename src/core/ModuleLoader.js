@@ -33,7 +33,7 @@ export const ModuleLoader = () => {
 
     useEffect( () => {
         let modules = require.context("../modules", true, /.+index\.js/);
-        let TwixeraModules = {};
+        let TwixeraModules = [];
         modules.keys().map(item => {
             item = item.replace("./", "");
             const context = /^(\w+)\//.exec(item)[1];
@@ -42,6 +42,7 @@ export const ModuleLoader = () => {
             let module = require(`../modules/${item}`).default;
 
             if ( module && module.settings ) {
+                console.log("Normal: ", module.settings);
                 module.settings.forEach(addSetting)
             }
 
@@ -66,6 +67,7 @@ export const ModuleLoader = () => {
 
     // Log.log("Module state", modules);
     // Log.log("Current app state: ", state);
+    console.log(modules);
     const renderedModules = state.twixera.module_context.flatMap( (context) =>
             modules[context] && modules[context].map((Component, index) => {
                 const active = state.settings[Component.settings[0].id].active;
@@ -89,28 +91,29 @@ export const GlobalModuleLoader = () => {
 
     useEffect(() => {
         let modules = require.context("../modules/global", true, /.+index\.js/);
-        let moduleSettings = [];
         let TwixeraModules = [];
         modules.keys().map((item) => {
             item = item.replace("./", "");
-            const context = /^(\w+)\//.exec(item)[1];
             let module = require(`../modules/global/${item}`).default;
 
             if (module && module.settings) {
-                moduleSettings = [...moduleSettings, ...module.settings];
+                console.log("Global: ", module.settings);
+                module.settings.forEach(addSetting);
             }
 
             if (module && module.setup) {
                 module.setup(state, dispatch);
             }
 
-            TwixeraModules.push(module);
+            if (module) {
+                TwixeraModules = [
+                    ...TwixeraModules,
+                    module,
+                ]
+            }
         });
-
-        if (moduleSettings.length > 0) {
-            dispatch(INIT_SETTINGS(moduleSettings));
-        }
-
+        
+        // dispatch(INIT_SETTINGS(getSettings()));
         setModules((prev) => ([
             ...prev,
             ...TwixeraModules,
@@ -119,8 +122,18 @@ export const GlobalModuleLoader = () => {
 
     // Log.log("Module state", modules);
     // Log.log("Current app state: ", state);
-    const renderedModules = modules.map((Component, index) => <Component key={index} />)
+    const renderedModules = modules.map((Component, index) => {
+        if ( Component.settings ) {
+            const active = state.settings[Component.settings[0].id].active;
+            if ( !active ) return null;
+            
+            return <Component key={index} />;
+        } else {
+            return <Component key={index} />;
+        }
+    }).filter(e => e !== undefined && e !== null);
 
+    Log.info("Twixer global modules: ", modules);
     Log.info("Loaded global modules", renderedModules);
 
     return <>{renderedModules}</>;
