@@ -24,7 +24,7 @@ const UserAvatars = () => {
         // const avatar = document.createElement("img");
         // avatar.src = `https://avatar.pixelchat.tv/${user.userLogin}`;
 
-        elem.prepend(avatarWrapper);
+        elem.querySelector(".chat-line__username-container").prepend(avatarWrapper);
         var avatar = new Image();
         avatar.style.borderColor = user.color;
         avatar.onload = function () {
