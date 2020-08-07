@@ -16,7 +16,8 @@ const MessageParser = () => {
         waitForElement(`[class^=chat-scrollable-area__message-container]`).then((elem) => {
                 if (!elem) return;
                 initialize(`[class^=chat-line__message]`, (elem) => {
-                    const msgObject = getChatMessageObject(elem);
+                    const msgObject = getChatMessageObject(elem) !== undefined ? getChatMessageObject(elem) : getChatMessageObject(elem, true);
+
                     parseMessage(elem, msgObject);
                 });
             }
@@ -28,24 +29,47 @@ const MessageParser = () => {
     }, [state.channels]);
 
     const parseMessage = (elem, msgObject) => {
+        console.log(elem, msgObject);
         if (!elem || !msgObject) return;
 
-        const { badges, user } = msgObject;
+        const { badges, user, messageBody } = msgObject;
+        let event;
 
-        const event = new CustomEvent("twixera-new-message", {
-            detail: {
-                elem,
-                user,
-                badges,
-                rawMessage: msgObject,
-            },
-        });
+        switch (msgObject.deleted) {
+            case true:
+                event = new CustomEvent("twixera-deleted-message", {
+                    detail: {
+                        elem,
+                        user,
+                        messageBody,
+                        rawMessage: msgObject,
+                    },
+                });
+                Log.debug("Deleted message: ", {
+                    elem,
+                    msgObject,
+                });
+                document.dispatchEvent(event);
+                break;
         
-        Log.debug("New chat message: ", {
-            elem, 
-            msgObject
-        })
-        document.dispatchEvent(event);
+            default:
+                event = new CustomEvent("twixera-new-message", {
+                    detail: {
+                        elem,
+                        user,
+                        badges,
+                        rawMessage: msgObject,
+                    },
+                });
+
+                Log.debug("New chat message: ", {
+                    elem,
+                    msgObject,
+                });
+                document.dispatchEvent(event);
+                break;
+        }
+        
     };
     return null;
 };
