@@ -31,6 +31,28 @@ $avatarSize: 24px;
             border-radius: 50%;
         }
     }
+
+    .twixera-user-founder-badge a {
+        display: inline-flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        margin-right: 6px;
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+
+        &:hover {
+            .tw-tooltip {
+                display: block;
+            }
+        }
+
+        img {
+            width: 100px;
+            height: 100%;
+        }
+    }
 }
 
 @keyframes loadImage {
