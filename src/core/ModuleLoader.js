@@ -41,9 +41,10 @@ export const ModuleLoader = () => {
 
             let module = require(`../modules/${item}`).default;
 
-            if ( module && module.settings ) {
-                console.log("Normal: ", module.settings);
-                module.settings.forEach(addSetting)
+            if (module && module.settings) {
+                module.settings.forEach(addSetting);
+            } else {
+                throw new Error(`Module, ${module.name} does not have any settings. All modules require basic info of id, name and category.`);
             }
 
             if ( module && module.setup ) {
