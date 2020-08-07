@@ -121,10 +121,19 @@ export const getChatServiceSocket = () => {
     return socket;
 }
 
-export const getChatMessageObject = (element) => {
+export const getChatMessageObject = (element, searchParent = false) => {
     let msgObject;
     try {
-        msgObject = getReactInstance(element).return.stateNode.props.message;
+        if ( searchParent ) {
+            const node = searchReactParents(
+                getReactInstance(element),
+                n => n.stateNode && n.stateNode.props && n.stateNode.props.message
+            );
+            console.log("Parent node: ", node);
+            msgObject = node.stateNode.props.message;
+        } else {
+            msgObject = getReactInstance(element).return.stateNode.props.message;
+        }
     } catch (_) {}
 
     return msgObject;
