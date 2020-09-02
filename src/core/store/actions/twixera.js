@@ -25,3 +25,15 @@ export const SET_ROUTER = payload => ({
     stateKey: [stateKey, "router"],
     payload
 })
+
+export const SET_HAS_BTTV = (payload) => ({
+    type: types.SET_HAS_BTTV,
+    stateKey: [stateKey, "hasBTTV"],
+    payload,
+});
+
+export const SET_HAS_FFZ = (payload) => ({
+    type: types.SET_HAS_FFZ,
+    stateKey: [stateKey, "hasFFZ"],
+    payload,
+});

@@ -32,7 +32,9 @@ const initialSate = {
     twixera: {
         env: "",
         emotes: [],
-        module_context: []
+        module_context: [],
+        hasBTTV: false,
+        hasFFZ: false
     }
 };
 const store = createContext(initialSate);

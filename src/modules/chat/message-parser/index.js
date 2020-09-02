@@ -29,7 +29,6 @@ const MessageParser = () => {
     }, [state.channels]);
 
     const parseMessage = (elem, msgObject) => {
-        console.log(elem, msgObject);
         if (!elem || !msgObject) return;
 
         const { badges, user, messageBody } = msgObject;
@@ -58,6 +57,7 @@ const MessageParser = () => {
                         elem,
                         user,
                         badges,
+                        ffz: msgObject.ffz_emotes ? true : false,
                         rawMessage: msgObject,
                     },
                 });

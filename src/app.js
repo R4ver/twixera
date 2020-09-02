@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { getRouter } from "Core/utils/twitch";
-import { SET_ROUTER } from "Core/store/actions/twixera";
+import { SET_ROUTER, SET_HAS_BTTV, SET_HAS_FFZ } from "Core/store/actions/twixera";
 import { waitForElement } from "Core/helpers/elementLoading";
 import Log from "Core/utils/log";
 

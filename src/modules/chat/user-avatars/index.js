@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Log from "Core/utils/log";
 
 const UserAvatars = () => {
 
@@ -10,7 +11,7 @@ const UserAvatars = () => {
         };
     }, [])
 
-    const addAvatar = async ({ detail: { elem, user, badges} }) => {
+    const addAvatar = async ({ detail: { elem, user, badges, ffz} }) => {
         const hasAvatar = elem.querySelector(".twixera-user-avatar-wrapper");
         if ( hasAvatar ) return;
 
@@ -22,6 +23,8 @@ const UserAvatars = () => {
         
         if ( !elem.querySelector(".chat-line__username-container") ) return
         elem.querySelector(".chat-line__username-container").prepend(avatarWrapper);
+
+        console.log("WRAPPER: ", elem.querySelector(".chat-line__username-container"));
 
         var avatar = new Image();
         avatar.style.borderColor = user.color;

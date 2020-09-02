@@ -13,10 +13,7 @@ const RemoveBadges = () => {
     }, []);
 
     const removeBadges = ({ detail: { elem } }) => {
-        console.log("Deleting badges", elem)
         const images = elem.querySelectorAll("img.chat-badge");
-
-        console.log(images);
 
         for ( let i = 0; i < images.length; i++ ) {
             const img = images[i]

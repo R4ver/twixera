@@ -5,7 +5,9 @@ export const types = {
     SET_ENV: "SET_ENV",
     SET_MODULE_CONTEXT: "SET_MODULE_CONTEXT",
     SET_EMOTES: "SET_EMOTES",
-    SET_ROUTER: "SET_ROUTER"
+    SET_ROUTER: "SET_ROUTER",
+    SET_HAS_BTTV: "SET_HAS_BTTV",
+    SET_HAS_FFZ: "SET_HAS_FFZ"
 }
 
 const setEnvironment = (state, {payload}) => {
@@ -46,11 +48,23 @@ const setRouter = (state, { payload }) => ({
     router: payload,
 });
 
+const setHasBTTV = (state, { payload }) => ({
+    ...state,
+    hasBTTV: payload
+})
+
+const setHasFFZ = (state, { payload }) => ({
+    ...state,
+    hasFFZ: payload,
+});
+
 const twixeraReducer = createReducer({}, {
     SET_ENV: setEnvironment,
     SET_MODULE_CONTEXT: setModuleContext,
     SET_EMOTES: setEmotes,
-    SET_ROUTER: setRouter
+    SET_ROUTER: setRouter,
+    SET_HAS_BTTV: setHasBTTV,
+    SET_HAS_FFZ: setHasFFZ
 });
 
 export default twixeraReducer;
