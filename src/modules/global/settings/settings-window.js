@@ -53,7 +53,13 @@ const SettingsWindow = ({closeSettings, news}) => {
                     <div className="header-left">
                         <nav className="settings-nav">
                             <div className="twixera-logo-wrapper">
-                                <img src="https://r4ver.com/twixera/assets/twixera-logo.svg" />
+                                <img
+                                    src={
+                                        process.env.NODE_ENV === "development"
+                                            ? "https://r4ver.com/twixera/assets/twixera-logo-dev.svg"
+                                            : "https://r4ver.com/twixera/assets/twixera-logo.svg"
+                                    }
+                                />
                             </div>
 
                             {renderNav()}

@@ -61,7 +61,7 @@ ChannelHostButton.settings = [
         category: "channel",
         defaultValue: false,
         type: "toggle",
-        disabled: true
+        disabled: false
     },
 ];
 

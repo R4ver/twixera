@@ -75,7 +75,7 @@ export const ModuleLoader = () => {
 
                 if ( !active ) return null;
 
-                return <Component key={index} />;
+                return <Component key={Component.settings[0].id} />;
             })
     ).filter(e => e !== undefined && e !== null);
 

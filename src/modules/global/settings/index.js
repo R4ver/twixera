@@ -100,7 +100,7 @@ const TwixeraSettings = () => {
                     <img
                         className="tw-button-icon__icon"
                         style={{ width: "2rem", height: "2rem" }}
-                        src="https://r4ver.com/twixera/assets/twixera-logo.svg"
+                        src={process.env.NODE_ENV === "development" ? "https://r4ver.com/twixera/assets/twixera-logo-dev.svg" : "https://r4ver.com/twixera/assets/twixera-logo.svg"}
                     />
                 </button>
             </PrependPortal>
