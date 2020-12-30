@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { waitForElement } from "Core/helpers/elementLoading";
+import { getChatServiceSocket } from "Core/utils/twitch";
 import Log from "Core/utils/log";
+import { useStore } from "Store";
+
 import { Button } from "UI";
 
 const FOLLOW_BUTTON_CONTAINER = ".follow-btn__follow-notify-container div";
 
 const ChannelHostButton = () => {
+    const [state] = useStore();
     const [hostState, setHostState] = useState({
         isHostingChannel: false,
         hostOtherChannelName: "",
@@ -33,6 +37,30 @@ const ChannelHostButton = () => {
 
     const handleHost = () => {
         console.log("Implement host functionality");
+
+        const command = "host"; //hosting ? "unhost" : "host";
+
+        try {
+            const channelName = state.channels[0].name;
+            const rawMessage = `PRIVMSG #${state.user.login} :/${
+                command === "host" ? `${command} ${channelName}` : command
+            }`;
+
+            Log.info(channelName);
+            Log.info(rawMessage);
+            getChatServiceSocket().send(rawMessage);
+            // hosting = !hosting;
+            // this.updateHostButtonText();
+            // twitch.sendChatAdminMessage(
+            //     `BetterTTV: We sent a /${command} to your channel.`
+            // );
+        } catch (e) {
+            Log.error(e);
+            // twitch.sendChatAdminMessage(`
+            //     BetterTTV: There was an error ${command}ing the channel.
+            //     You may need to ${command} it from your channel.
+            // `);
+        }
     }
 
     if ( !hostState.parentContainer ) return null;

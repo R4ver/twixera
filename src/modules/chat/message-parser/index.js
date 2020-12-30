@@ -44,10 +44,10 @@ const MessageParser = () => {
                         rawMessage: msgObject,
                     },
                 });
-                Log.debug("Deleted message: ", {
-                    elem,
-                    msgObject,
-                });
+                // Log.debug("Deleted message: ", {
+                //     elem,
+                //     msgObject,
+                // });
                 document.dispatchEvent(event);
                 break;
         
@@ -62,10 +62,10 @@ const MessageParser = () => {
                     },
                 });
 
-                Log.debug("New chat message: ", {
-                    elem,
-                    msgObject,
-                });
+                // Log.debug("New chat message: ", {
+                //     elem,
+                //     msgObject,
+                // });
                 document.dispatchEvent(event);
                 break;
         }

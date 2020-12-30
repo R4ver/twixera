@@ -24,8 +24,6 @@ const UserAvatars = () => {
         if ( !elem.querySelector(".chat-line__username-container") ) return
         elem.querySelector(".chat-line__username-container").prepend(avatarWrapper);
 
-        console.log("WRAPPER: ", elem.querySelector(".chat-line__username-container"));
-
         var avatar = new Image();
         avatar.style.borderColor = user.color;
         avatar.onload = function () {

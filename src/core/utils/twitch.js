@@ -7,6 +7,8 @@ export const PLAYER = ".video-player__container";
 export const CLIPS_BROADCASTER_INFO = ".clips-broadcaster-info";
 export const CHAT_MESSAGE_SELECTOR = ".chat-line__message";
 
+let chatClient = null;
+
 function getReactInstance(element) {
     for (const key in element) {
         if (key.startsWith("__reactInternalInstance$")) {
@@ -103,8 +105,8 @@ export const getChatServiceClient = () => {
 
     try {
         const node = searchReactChildren(
-            getReactInstance($(REACT_ROOT)[0]),
-            n => n.stateNode && n.stateNode.join && n.stateNode.client,
+            getReactInstance(document.querySelector(REACT_ROOT)),
+            (n) => n.stateNode && n.stateNode.join && n.stateNode.client,
             1000
         );
         chatClient = node.stateNode.client;
@@ -118,6 +120,7 @@ export const getChatServiceSocket = () => {
     try {
         socket = getChatServiceClient().connection.ws;
     } catch (_) {}
+
     return socket;
 }
 
@@ -129,7 +132,6 @@ export const getChatMessageObject = (element, searchParent = false) => {
                 getReactInstance(element),
                 n => n.stateNode && n.stateNode.props && n.stateNode.props.message
             );
-            console.log("Parent node: ", node);
             msgObject = node.stateNode.props.message;
         } else {
             msgObject = getReactInstance(element).return.stateNode.props.message;
