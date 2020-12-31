@@ -63,7 +63,7 @@ const ChannelHostButton = () => {
         }
     }
 
-    if ( !hostState.parentContainer ) return null;
+    if ( !hostState.parentContainer || state.channels[0].name === state.user.login ) return null;
 
     return createPortal(
         <Button onClick={handleHost}>
