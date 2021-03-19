@@ -30,9 +30,9 @@ const routeKeysToPaths = {
     [routes.CHAT]: /^(\/popout)?\/[a-z0-9-_]+\/chat$/i,
     [routes.VOD]: /^(\/videos\/[0-9]+|\/[a-z0-9-_]+\/clip\/[a-z0-9-_]+)$/i,
     [routes.DASHBOARD]: /^(\/[a-z0-9-_]+\/dashboard|\/u\/[a-z0-9-_]+\/stream-manager)/i,
-    [routes.MOD_DASH]: /^(\/[a-z0-9-_]+\/moderator|\/[a-z0-9-_]+)/i,
+    [routes.MOD_DASH]: /^\/moderator\/[a-z0-9-_]+/i,
     [routes.CHANNEL_SQUAD]: /^\/[a-z0-9-_]+\/squad/i,
-    [routes.CHANNEL]: /^\/[a-z0-9-_]+/i,
+    [routes.CHANNEL]: /^\/[a-z0-9-_]+$/i,
 };
 
 function getRouteFromPath(path) {
@@ -65,8 +65,6 @@ const RouteWatcher = () => {
         previousPath.current = state.location.previous.pathname;
         const path = state.location.current.pathname;
         const route = getRouteFromPath(path);
-
-
 
         (async () => {
             switch (route) {
@@ -103,7 +101,7 @@ const RouteWatcher = () => {
                     break;
                 case routes.DASHBOARD:
                     dispatch(SET_MODULE_CONTEXT([moduleGroups[route],  moduleGroups.CHAT]))
-                    
+                    console.log("dashboard");
                     waitForLoad("chat").then(() => {
                         const currentChannel = getCurrentChannel();
                         dispatch(SET_CHANNEL(currentChannel));

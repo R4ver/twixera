@@ -7,7 +7,6 @@ export class PrependPortal extends React.Component {
 
         this.root = this.props.root;
         this.el = document.createElement("div");
-        console.log("CLASSNAME: ", this.props.className)
         this.el.classList.add(...this.props.className);
     }
 

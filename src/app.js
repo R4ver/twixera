@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { getRouter } from "Core/utils/twitch";
 import { SET_ROUTER } from "Core/store/actions/twixera";
+import { waitForElement } from "Core/helpers/elementLoading";
 import Log from "Core/utils/log";
 
 import { store } from "Core/store";
@@ -15,7 +16,7 @@ const App = () => {
     useEffect( () => {
         (async () => {
             try {
-                const router = await getRouter();
+                let router = await getRouter();
                 
                 if ( router ) {
                     dispatch(SET_ROUTER(router))

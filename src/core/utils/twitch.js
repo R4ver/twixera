@@ -71,6 +71,17 @@ export const getRouter = () => {
         router = node.stateNode.props;
     } catch (_) {}
 
+    if (!router) {
+        try {
+            const node = searchReactParents(
+                getReactInstance(document.querySelector(REACT_ROOT)),
+                n => n.memoizedProps && n.memoizedProps && n.memoizedProps.value && n.memoizedProps.value.history && n.memoizedProps.value.history.listen && n.memoizedProps.value.history.location,
+                20
+            );
+            router = node.memoizedProps.value;
+        } catch (_) {}
+    }
+
     return router;
 }
 
@@ -110,10 +121,19 @@ export const getChatServiceSocket = () => {
     return socket;
 }
 
-export const getChatMessageObject = (element) => {
+export const getChatMessageObject = (element, searchParent = false) => {
     let msgObject;
     try {
-        msgObject = getReactInstance(element).return.stateNode.props.message;
+        if ( searchParent ) {
+            const node = searchReactParents(
+                getReactInstance(element),
+                n => n.stateNode && n.stateNode.props && n.stateNode.props.message
+            );
+            console.log("Parent node: ", node);
+            msgObject = node.stateNode.props.message;
+        } else {
+            msgObject = getReactInstance(element).return.stateNode.props.message;
+        }
     } catch (_) {}
 
     return msgObject;
