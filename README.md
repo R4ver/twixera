@@ -27,3 +27,6 @@ Twixera focuses on adding new features and interactions to the Twitch streaming 
 ## Contribution
 
 Generally not looking for contributions since this is more of a personal project, but I'm open for suggestions and fixes!
+
+## Notice
+There's still a lot of old files and code that needs to be removed after the switch to Twitch. I'll eventually get that sorted out once I get back to this project!
