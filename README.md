@@ -1,6 +1,6 @@
 <p align="center">
 	<a href="https://chrome.google.com/webstore/detail/twixera/gefbnbbmfoakmbblphigemkiekfelahe">
-    	<img width="80" height="80" src="https://r4ver.com/twixera/assets/twixera-logo.svg" />
+    	<img width="80" height="80" src="https://r4ver.com/twixera/assets/twixera-logo-circle.svg" />
   </a>
 </p>
 
@@ -29,4 +29,5 @@ Twixera focuses on adding new features and interactions to the Twitch streaming 
 Generally not looking for contributions since this is more of a personal project, but I'm open for suggestions and fixes!
 
 ## Notice
+
 There's still a lot of old files and code that needs to be removed after the switch to Twitch. I'll eventually get that sorted out once I get back to this project!
