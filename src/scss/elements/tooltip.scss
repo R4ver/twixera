@@ -5,24 +5,24 @@
     pointer-events: none;
     user-select: none;
     z-index: 2000;
-    
+
     color: $white;
-    
+
     background-color: $black;
     border-radius: 3px;
-    
+
     &.is-top {
         top: 0;
     }
-    
+
     &.is-left {
         left: 0;
     }
-    
+
     &.is-right {
         right: 0;
     }
-    
+
     &.is-bottom {
         bottom: 0;
     }
@@ -37,19 +37,19 @@
         $color-invert: nth($pair, 2);
         $color-hover: nth($pair, 3);
         $color-gradient: nth($pair, 4);
-        
+
         &.is-#{$name} {
             color: $color;
-            
+
             &:hover {
                 color: $color-hover;
             }
         }
-        
+
         &.has-#{$name}-background-color {
             color: $color-invert;
             background-color: $color;
-            
+
             &:hover {
                 background-color: $color-hover;
             }
@@ -60,50 +60,101 @@
             background: $color-gradient;
 
             &:hover {
-                filter: brightness(1.1)
+                filter: brightness(1.1);
             }
         }
     }
-    
+
     &.is-floating {
         $arrow-size: 10px;
         @include triangle($td-primary-dark, #{$arrow-size});
-        
+
         position: absolute;
         top: 0;
         padding: 4px;
         width: 115%;
         z-index: 100;
 
-        box-shadow: 0 0 9px rgba($primary, .5);
+        box-shadow: 0 0 9px rgba($primary, 0.5);
         border-radius: 5px;
-        
+
         &.is-top {
             top: 0;
             left: 50%;
             transform: translate(-50%, #{calc(-100% - #{$arrow-size})});
         }
-        
+
         &.is-left {
             top: 50%;
             left: 0;
             transform: translate(#{calc(-100% + #{$arrow-size})}, -50%);
         }
-        
+
         &.is-right {
             top: 50%;
             right: 0;
             transform: translate(#{calc(100% + #{$arrow-size})}, -50%);
         }
-        
+
         &.is-bottom {
             top: 100%;
             left: 50%;
             transform: translate(-50%, #{calc(100% + #{$arrow-size})});
         }
     }
-    
+
     &.is-small {
         font-size: $size-6;
+    }
+}
+
+.twixera-tooltip {
+    padding: 3px 6px;
+    border-radius: var(--border-radius-medium);
+    background-color: var(--color-background-tooltip);
+    color: var(--color-text-tooltip);
+    display: none;
+    position: absolute;
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+    text-align: left;
+    z-index: var(--z-index-balloon);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    top: auto;
+    bottom: 100%;
+    left: 0px;
+    margin-bottom: 0.9rem;
+
+    &:hover {
+        display: block;
+    }
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+    }
+
+    &::before {
+        top: -6px;
+        left: -6px;
+        width: calc(100% + 12px);
+        height: calc(100% + 12px);
+        z-index: var(--z-index-below);
+    }
+
+    &::after {
+        background-color: var(--color-background-tooltip);
+        width: 6px;
+        height: 6px;
+        transform: rotate(45deg);
+        z-index: var(--z-index-below);
+        border-radius: 0 0 var(--border-radius-small);
+        top: 100%;
+        left: 6px;
+        margin-top: -3px;
     }
 }

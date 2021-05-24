@@ -13,10 +13,15 @@ const MessageParser = () => {
     useEffect(() => {
         if (!state.channels.length > 0) return;
 
-        waitForElement(`[class^=chat-scrollable-area__message-container]`).then((elem) => {
+        waitForElement(`.chat-scrollable-area__message-container`).then(
+            (elem) => {
+                console.log(elem);
                 if (!elem) return;
                 initialize(`[class^=chat-line__message]`, (elem) => {
-                    const msgObject = getChatMessageObject(elem) !== undefined ? getChatMessageObject(elem) : getChatMessageObject(elem, true);
+                    const msgObject =
+                        getChatMessageObject(elem) !== undefined
+                            ? getChatMessageObject(elem)
+                            : getChatMessageObject(elem, true);
 
                     parseMessage(elem, msgObject);
                 });

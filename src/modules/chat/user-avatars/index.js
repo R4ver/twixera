@@ -12,6 +12,7 @@ const UserAvatars = () => {
 
     const addAvatar = async ({ detail: { elem, user, badges} }) => {
         const hasAvatar = elem.querySelector(".twixera-user-avatar-wrapper");
+        console.log("Has avatar? :", hasAvatar);
         if ( hasAvatar ) return;
 
         const isMod = badges.hasOwnProperty("moderator");

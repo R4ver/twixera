@@ -27,7 +27,7 @@ const FounderBadge = () => {
         twixeraIcon.src = "https://r4ver.com/twixera/assets/twixera-logo.svg";
 
         const tooltip = document.createElement("div");
-        tooltip.classList.add("tw-tooltip", "tw-tooltip--align-center", "tw-tooltip--up");
+        tooltip.classList.add("twixera-tooltip", "tw-tooltip", "tw-tooltip--align-center", "tw-tooltip--up");
         tooltip.setAttribute("data-a-target", "tw-tooltip-label");
         tooltip.style.marginBottom = "0.9rem";
         tooltip.innerText = "Twixera Founder";
