@@ -1,67 +1,67 @@
 {
-  "name": "twixera",
-  "version": "2.3.1",
-  "description": "(Former Mixera) The experience you fell in love with on Mixer, now on Twitch!",
-  "main": "null",
-  "scripts": {
-    "dev-server": "cd dev-server&&node server",
-    "build": "rm -rf build&&set NODE_ENV=production&&webpack --config webpack.prod.js",
-    "extension-dev": "set NODE_ENV=development&&webpack --config webpack.dev.js",
-    "start": "concurrently --kill-others \"npm run extension-dev\" \"npm run dev-server\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/R4ver/eq-for-mixer.git"
-  },
-  "keywords": [
-    "mixer",
-    "eq",
-    "r4ver",
-    "chrome",
-    "firefox",
-    "extension"
-  ],
-  "author": "R4ver",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://gitlab.com/R4ver/eq-for-mixer/issues"
-  },
-  "homepage": "https://mixera.r4ver.com",
-  "dependencies": {
-    "animate.css": "^4.1.0",
-    "dotenv": "^8.2.0",
-    "dotenv-webpack": "^1.8.0",
-    "markdown-to-jsx": "^6.11.4",
-    "marked": "^2.0.1",
-    "postcss": "^8.3.0",
-    "query-string": "^6.13.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-svg-spinner": "^1.0.4",
-    "react-toastify": "^6.0.6"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.10.3",
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/plugin-transform-runtime": "^7.10.3",
-    "@babel/preset-env": "^7.10.3",
-    "@babel/preset-react": "^7.10.1",
-    "@babel/runtime": "^7.10.3",
-    "babel-loader": "^8.1.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "concurrently": "^5.2.0",
-    "copy-webpack-plugin": "^6.0.2",
-    "cors": "^2.8.5",
-    "css-loader": "^3.6.0",
-    "express": "^4.17.1",
-    "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.14.1",
-    "sass": "^1.26.9",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.2.1",
-    "terser-webpack-plugin": "^3.0.6",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-merge": "^4.2.2"
-  }
+    "name": "twixera",
+    "version": "2.3.1",
+    "description": "(Former Mixera) The experience you fell in love with on Mixer, now on Twitch!",
+    "main": "null",
+    "scripts": {
+        "dev-server": "cd dev-server&&node server",
+        "build": "rm -rf build&&set NODE_ENV=production&&webpack --config webpack.prod.js",
+        "extension-dev": "set NODE_ENV=development&&webpack --config webpack.dev.js",
+        "start": "concurrently --kill-others \"npm run extension-dev\" \"npm run dev-server\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@gitlab.com/R4ver/twixera.git"
+    },
+    "keywords": [
+        "mixer",
+        "eq",
+        "r4ver",
+        "chrome",
+        "firefox",
+        "extension"
+    ],
+    "author": "R4ver",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://gitlab.com/R4ver/twixera/issues"
+    },
+    "homepage": "https://mixera.r4ver.com",
+    "dependencies": {
+        "animate.css": "^4.1.0",
+        "dotenv": "^8.2.0",
+        "dotenv-webpack": "^1.8.0",
+        "markdown-to-jsx": "^6.11.4",
+        "marked": "^2.0.1",
+        "postcss": "^8.3.0",
+        "query-string": "^6.13.1",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-svg-spinner": "^1.0.4",
+        "react-toastify": "^6.0.6"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.10.3",
+        "@babel/plugin-proposal-class-properties": "^7.10.1",
+        "@babel/plugin-transform-runtime": "^7.10.3",
+        "@babel/preset-env": "^7.10.3",
+        "@babel/preset-react": "^7.10.1",
+        "@babel/runtime": "^7.10.3",
+        "babel-loader": "^8.1.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "concurrently": "^5.2.0",
+        "copy-webpack-plugin": "^6.0.2",
+        "cors": "^2.8.5",
+        "css-loader": "^3.6.0",
+        "express": "^4.17.1",
+        "mini-css-extract-plugin": "^0.9.0",
+        "node-sass": "^4.14.1",
+        "sass": "^1.26.9",
+        "sass-loader": "^8.0.2",
+        "style-loader": "^1.2.1",
+        "terser-webpack-plugin": "^3.0.6",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.12",
+        "webpack-merge": "^4.2.2"
+    }
 }
