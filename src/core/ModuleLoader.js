@@ -34,30 +34,34 @@ export const ModuleLoader = () => {
     useEffect( () => {
         let modules = require.context("../modules", true, /.+index\.js/);
         let TwixeraModules = [];
-        modules.keys().map(item => {
-            item = item.replace("./", "");
-            const context = /^(\w+)\//.exec(item)[1];
-            if ( context === "global" ) return;
+        modules
+            .keys()
+            .filter((i) => !i.match(/^modules/))
+            .map((item) => {
+                item = item.replace("./", "");
+                const context = /^(\w+)\//.exec(item)[1];
+                if (context === "global") return;
+                let module = require(`../modules/${item}`).default;
 
-            let module = require(`../modules/${item}`).default;
+                if (module && module.settings) {
+                    module.settings.forEach(addSetting);
+                } else {
+                    throw new Error(
+                        `Module, ${module.name} does not have any settings. All modules require basic info of id, name and category.`
+                    );
+                }
 
-            if (module && module.settings) {
-                module.settings.forEach(addSetting);
-            } else {
-                throw new Error(`Module, ${module.name} does not have any settings. All modules require basic info of id, name and category.`);
-            }
+                if (module && module.setup) {
+                    module.setup(state, dispatch);
+                }
 
-            if ( module && module.setup ) {
-                module.setup(state, dispatch);
-            }
-            
-            if ( module ) {
-                TwixeraModules[context] = [
-                    ...TwixeraModules[context] || [],
-                    module
-                ]
-            }
-        });
+                if (module) {
+                    TwixeraModules[context] = [
+                        ...(TwixeraModules[context] || []),
+                        module,
+                    ];
+                }
+            });
 
         dispatch(INIT_SETTINGS(getSettings()));
         setModules(prev => ({
@@ -93,26 +97,26 @@ export const GlobalModuleLoader = () => {
     useEffect(() => {
         let modules = require.context("../modules/global", true, /.+index\.js/);
         let TwixeraModules = [];
-        modules.keys().map((item) => {
-            item = item.replace("./", "");
-            let module = require(`../modules/global/${item}`).default;
+        modules
+            .keys()
+            .filter((i) => !i.match(/^modules/))
+            .map((item) => {
+                item = item.replace("./", "");
+                let module = require(`../modules/global/${item}`).default;
+                console.log(item, module);
 
-            if (module && module.settings) {
-                console.log("Global: ", module.settings);
-                module.settings.forEach(addSetting);
-            }
+                if (module && module.settings) {
+                    module.settings.forEach(addSetting);
+                }
 
-            if (module && module.setup) {
-                module.setup(state, dispatch);
-            }
+                if (module && module.setup) {
+                    module.setup(state, dispatch);
+                }
 
-            if (module) {
-                TwixeraModules = [
-                    ...TwixeraModules,
-                    module,
-                ]
-            }
-        });
+                if (module) {
+                    TwixeraModules = [...TwixeraModules, module];
+                }
+            });
         
         // dispatch(INIT_SETTINGS(getSettings()));
         setModules((prev) => ([
