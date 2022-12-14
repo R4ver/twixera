@@ -56,7 +56,7 @@
         "copy-webpack-plugin": "^9.0.0",
         "cors": "^2.8.5",
         "css-loader": "^5.2.6",
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "mini-css-extract-plugin": "^1.6.0",
         "node-sass": "^6.0.0",
         "sass": "^1.34.1",
